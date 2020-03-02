@@ -1,0 +1,31 @@
+{
+  "name": "memos",
+  "version": "1.0.0",
+  "description": "DM programmation Web",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChihabEddine98/memos.git"
+  },
+  "keywords": [
+    "By",
+    "Chihab",
+    "Benamara"
+  ],
+  "author": "Chihab Benamara",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChihabEddine98/memos/issues"
+  },
+  "homepage": "https://github.com/ChihabEddine98/memos#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
