@@ -5,6 +5,9 @@ const bodyParser=require('body-parser')
 const adminRoutes=require('./src/routes/admin')
 
 app=express()
+app.set('view engine','ejs')
+app.set('views','src/views')
+
 
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(express.static(path.join(__dirname,'src','static')))
@@ -13,7 +16,7 @@ app.use(adminRoutes)
 
 
 app.get('/', (req, res,next)=>{
-    res.sendFile(path.join(__dirname,'src','views','welcome.html'))
+    res.render('welcome',{pageTitle: 'Welcome Page'})
 })
 
 app.listen(8080,function()

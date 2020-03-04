@@ -29,8 +29,9 @@ body{
 }
 .main-header__tabs-list{
 
-    padding: 0;
+    padding: 40px;
     margin: 0;
+    width: 100%;
     list-style: none;
     overflow: hidden;
 
@@ -51,7 +52,7 @@ body{
 }
 
 
-.main-header__tab-item:hover,.main-header__tab-item:active{
+.main-header__tab-item:hover,.main-header__tab-item a:active{
     
     color: var(--text_hover_col);
     border: solid 3px var(--text_hover_col);
@@ -61,17 +62,27 @@ body{
 
 }
 
-.btn{
-    width: 120px;
-    margin: 0 0 0 1.5rem ;
-    padding: 6px 2px;
+.main-header__tabs-list .btn_item{
+    float: right;
+   
+}
+
+.btn_item .btn{
+    display: block;
+    width: 145px;
+    margin: 0 20px 0 10px;
+    padding: 6px 10px;
     border: solid var(--text_hover_col) 2px;
     color: var(--text_hover_col);
     border-radius: 3px;
     background-color: transparent;
 }
-.btn-item{
-    float: right;
+
+.btn_item .btn:hover,main-header__tab-item .btn:active{
+    border: solid var(--navbar_col) 2px;
+    color: var(--navbar_col);
+    border-radius: 3px;
+    background-color: var(--text_hover_col);
 }
 /*  End NavBar  */
 
