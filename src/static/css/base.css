@@ -67,7 +67,7 @@ body{
    
 }
 
-.btn_item .btn{
+ .btn{
     display: block;
     width: 145px;
     margin: 0 20px 0 10px;
@@ -77,8 +77,7 @@ body{
     border-radius: 3px;
     background-color: transparent;
 }
-
-.btn_item .btn:hover,main-header__tab-item .btn:active{
+ .btn:hover,main-header__tab-item .btn:active{
     border: solid var(--navbar_col) 2px;
     color: var(--navbar_col);
     border-radius: 3px;
