@@ -58,7 +58,7 @@ i{
 }
 .remember input {
     width: 35px;
-    height: 40px;
+    height: 50px;
     text-align: center;
     border: solid var(--navbar_col);
     border-width: 2px;
@@ -69,7 +69,7 @@ i{
 
 .form-control .btn{
 
-    width: 40%;
+    width: 45%;
     padding: 0 15px;
     margin: 10px auto 30px auto;
     height: 50px;
@@ -81,6 +81,15 @@ i{
     font-size: 22px;
     
 }
+.form-control .btn:hover,.form-control .btn:active{
+
+    background-color: var(--navbar_col);
+    color: #c8bdbd;
+    border: 3px solid var(--overlay_bg_col);
+    cursor: pointer;
+    
+}
+
 a{
     text-decoration: none;
 }
