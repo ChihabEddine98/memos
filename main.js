@@ -2,7 +2,14 @@ const path=require('path')
 const express=require('express')
 const bodyParser=require('body-parser')
 
+const db=require('./src/common/database')
+const memo=require('./src/models/Memo')
+
 const adminRoutes=require('./src/routes/admin')
+const memoRoutes=require('./src/routes/memo')
+
+
+const PORT = 8080
 
 app=express()
 app.set('view engine','ejs')
@@ -11,16 +18,29 @@ app.set('views','src/views')
 
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(express.static(path.join(__dirname,'src','static')))
-app.use(adminRoutes)
-
+app.use('/admin',adminRoutes)
+app.use('/memo',memoRoutes)
 
 
 app.get('/', (req, res,next)=>{
     res.render('welcome',{pageTitle: 'Welcome Page'})
 })
 
-app.listen(8080,function()
-{
-    console.log('App is listening on port 8080!')
-}
+
+db.sync({
+    force:true
+})
+.then(result => {
+    console.log('Connection Réussie à La BDD !')
+    app.listen(PORT,function()
+    {
+        console.log(`App is listening on port ${PORT} !`)
+    }
 )
+})
+.catch(err => {
+    console.log(err)
+})
+
+
+
