@@ -1,10 +1,14 @@
 /* Variable à utiliser ! ( Couleurs ) */
 :root {
     --main_bg_color: rgb(170, 52, 52);
-    --navbar_col:rgba(53, 49, 49, 0.911);
+    --navbar_col:rgba(26, 21, 21, 0.911);
     --hover_bg_col:rgba(63, 218, 172, 0.911);
     --text_col:rgba(255, 255, 255, 0.911);
-    --text_hover_col:rgb(255, 243, 80);
+    --text_hover_col:rgb(253, 105, 105);
+    --overlay_bg_col:rgba(146, 146, 146, 0.534);
+    --overlay_fg_col:rgba(233, 224, 224, 0.534);
+
+
 }
 
 body{
@@ -81,6 +85,7 @@ body{
     color: var(--text_hover_col);
     border-radius: 3px;
     background-color: transparent;
+    text-decoration: none;
 }
 
 .btn_item .btn:hover,main-header__tab-item .btn:active{

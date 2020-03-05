@@ -1,0 +1,90 @@
+body{    
+    background-image: url('../img/bg_login.jpg');
+    background-size: cover;
+}
+.main {
+    display: block;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+
+}
+
+.login-form{
+    margin: auto;
+    width: 30%;
+    height: 570px;
+    padding: 20px;
+    align-items: center;
+    display: block;
+    background-color: var(--overlay_bg_col);
+    border-radius: 30px;
+}
+.login-form img{
+
+    height: 200px;
+    width: 200px;
+
+    
+}
+i{
+    size: 50px;
+}
+
+
+.form-control input{
+
+    width: 70%;
+    margin: 0 0 20px 0;
+    height: 40px;
+    text-align: center;
+    border: solid var(--text_col);
+    border-width: 2px;
+    border-radius: 12px;  
+    background-color: var(--overlay_fg_col);
+    font-size: 22px; 
+    
+}
+
+.remember{
+    margin: 10px 15%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    
+}
+.remember input {
+    width: 35px;
+    height: 40px;
+    text-align: center;
+    border: solid var(--navbar_col);
+    border-width: 2px;
+    border-radius: 12px;  
+    background-color: var(--overlay_fg_col);
+    font-size: 22px; 
+}
+
+.form-control .btn{
+
+    width: 40%;
+    padding: 0 15px;
+    margin: 10px auto 30px auto;
+    height: 50px;
+    text-align: center;
+    background-color: transparent;
+    color: var(--navbar_col);
+    border: 3px solid var(--navbar_col);
+    border-radius: 4px;
+    font-size: 22px;
+    
+}
+a{
+    text-decoration: none;
+}
+b{
+    color :black;
+    font-size: 25px;
+}

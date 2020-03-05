@@ -7,6 +7,7 @@ const memo=require('./src/models/Memo')
 
 const adminRoutes=require('./src/routes/admin')
 const memoRoutes=require('./src/routes/memo')
+const authRoutes=require('./src/routes/auth')
 
 
 const PORT = 8080
@@ -18,9 +19,11 @@ app.set('views','src/views')
 
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(express.static(path.join(__dirname,'src','static')))
+
+
 app.use('/admin',adminRoutes)
 app.use('/memo',memoRoutes)
-
+app.use(authRoutes)
 
 app.get('/', (req, res,next)=>{
     res.render('welcome',{pageTitle: 'Welcome Page'})
