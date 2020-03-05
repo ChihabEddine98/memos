@@ -17,7 +17,7 @@ body{
 /* NavBar:  */
 .main-header{
     width: 100%;
-    height: 5rem;
+    height: auto;
     background-color: var(--navbar_col);
     padding: 0 1.5rem;
 }
@@ -25,13 +25,17 @@ body{
 .main-header__nav{
     height: 100%;
     display: flex;
+    overflow: hidden;
     align-items: center;
+    text-align: center;
 }
 .main-header__tabs-list{
 
     padding: 40px;
     margin: 0;
     width: 100%;
+    align-items: center;
+    text-align: center;
     list-style: none;
     overflow: hidden;
 
@@ -39,6 +43,7 @@ body{
 
 .main-header__tab-item{
     float: left;
+    padding: 14px 16px;
 }
 
 .main-header__tab-item a{
@@ -64,25 +69,63 @@ body{
 
 .main-header__tabs-list .btn_item{
     float: right;
-   
+    align-items: center;
 }
 
- .btn{
+.btn_item .btn{
     display: block;
     width: 145px;
-    margin: 0 20px 0 10px;
-    padding: 6px 10px;
+    margin: 10px 20px 10px 10px;
+    padding: 14px 16px;
     border: solid var(--text_hover_col) 2px;
     color: var(--text_hover_col);
     border-radius: 3px;
     background-color: transparent;
 }
- .btn:hover,main-header__tab-item .btn:active{
+
+.btn_item .btn:hover,main-header__tab-item .btn:active{
     border: solid var(--navbar_col) 2px;
     color: var(--navbar_col);
     border-radius: 3px;
     background-color: var(--text_hover_col);
 }
+
+/* Responsive NavBar  */
+.main-header__nav ul li:last-child {
+    display: none;
+  }
+
+@media screen and (max-width: 920px) {
+    .main-header__nav ul li:not(:first-child) {display: none;}
+    .main-header__nav ul li:last-child{
+      float: right;
+      display: block;
+    }
+  }
+  
+  @media screen and (max-width: 920px) {
+    .main-header__nav.responsive {position: relative;}
+    .main-header__nav.responsive ul li:last-child {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+    .main-header__nav.responsive ul  {
+        text-align: center;
+        align-items: center;
+      }
+    .main-header__nav.responsive ul .btn {
+        margin: 10px 5% 0 10%;
+        width: 70%;
+    }
+    .main-header__nav.responsive ul li  {
+      float: none;
+      display: block;
+      text-align: center;
+    }
+  }
+
+
 /*  End NavBar  */
 
 

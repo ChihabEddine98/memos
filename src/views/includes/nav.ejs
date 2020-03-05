@@ -1,7 +1,10 @@
+
+<!-- Pour Le Boutton de responsive -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <body>
 
     <header class="main-header">
-        <nav class="main-header__nav">
+        <nav class="main-header__nav" id="navRes">
             <ul class="main-header__tabs-list">
                 <li class="main-header__tab-item"><a href="" class="active"> Home</a></li>
                 <li class="main-header__tab-item"><a href=""> Mémos</a></li>
@@ -13,6 +16,23 @@
                 <li class="btn_item"> 
                     <a class="btn"> S'inscrire </a>
                 </li>
+                <li class="main-header__tab-item">
+                    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                        <i class="fa fa-bars"></i>
+                      </a>
+                </li>
+
             </ul>
         </nav>
     </header> 
+
+    <script>
+        function myFunction() {
+          var x = document.getElementById("navRes");
+          if (x.className === "main-header__nav") {
+            x.className += " responsive";
+          } else {
+            x.className = "main-header__nav";
+          }
+        }
+    </script>
