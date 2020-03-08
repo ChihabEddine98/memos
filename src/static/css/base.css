@@ -6,6 +6,7 @@
     --text_col:rgba(255, 255, 255, 0.911);
     --text_hover_col:rgb(253, 105, 105);
     --overlay_bg_col:rgba(146, 146, 146, 0.534);
+    --overlay_bg_dark_col:rgba(32, 29, 29, 0.787);
     --overlay_fg_col:rgba(233, 224, 224, 0.534);
 
 
@@ -29,9 +30,10 @@ body{
 .main-header__nav{
     height: 100%;
     display: flex;
-    overflow: hidden;
+    overflow: auto;
     align-items: center;
     text-align: center;
+
 }
 .main-header__tabs-list{
 
@@ -88,7 +90,7 @@ body{
     text-decoration: none;
 }
 
-.btn_item .btn:hover,main-header__tab-item .btn:active{
+.btn_item .btn:hover,.main-header__tab-item .btn:active{
     border: solid var(--navbar_col) 2px;
     color: var(--navbar_col);
     border-radius: 3px;

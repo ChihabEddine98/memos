@@ -1,5 +1,8 @@
 /* Liste Des mémos  */
 .main {
+    background-image: linear-gradient(to right, #e178bd, #ff879d, #ffa483, #ffc77c, #e9e990);
+    margin: 0;
+    background-size: cover;
     display: block;
     align-items: center;
     text-align: center;
@@ -23,6 +26,8 @@
     width: 500px;
     height: 600px;
     border: 2px var(--navbar_col) solid;
+    background-color: var(--overlay_bg_col);
+    border-radius: 20px;
     align-items: center;
     text-align: center;
 

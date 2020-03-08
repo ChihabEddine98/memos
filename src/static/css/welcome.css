@@ -1,16 +1,70 @@
-/* Main Content */
-.main-container{
-
-    width: 100%;
-    margin: 8rem 2rem 0rem 60rem;
-    align-items: center;
-
-
-}
-.main-container__memo-bg{
-    width: 50rem;
-    height: 35rem;
+main{
+    background-image: url('../img/memos_bg.jpg');
+    margin: 0;
     background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+
 }
+/* Main Content */
+.main-container {
+    display: block;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+
+}
+
+.welcome_text{
+
+    width: 30%;
+    align-items: center;
+    text-align: center;
+    height: 460px;
+    padding: 20px;
+    display: block;
+    background-color: var(--overlay_bg_dark_col);
+    border-radius: 30px;
+    margin: 5% 30%;
+    color: white;
+}
+.welcome_text .btn_{
+    margin-top: 50px;
+
+}
+
+.welcome_text .btn{
+    width: 155px;
+    margin-top: 50px;
+    padding: 16px;
+    border: solid var(--text_hover_col) 4px;
+    color: var(--text_hover_col);
+    border-radius: 3px;
+    background-color: transparent;
+    text-decoration: none;
+    font-size: 22px;
+}
+
+.welcome_text .btn:hover,.welcome_text.btn:active{
+    border: solid var(--navbar_col) 4px;
+    color: var(--navbar_col);
+    background-color: var(--text_hover_col);
+}
+
+h1{
+    font-size: 44px;
+
+}
+
+p{
+    font-size: 24px;
+    padding: 10px;
+}
+
+
 
 /* END Main Content  */
