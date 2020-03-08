@@ -36,5 +36,5 @@ exports.getMemos=((req,res,next)=>
 
 exports.getAddMemo=((req,res,next)=>
 {
-    res.send(" Yohoooo Helllo ")
+    res.render('../views/add_memo.ejs',{pageTitle :'Nouveau Mémo'})
 })

@@ -1,0 +1,51 @@
+<%- include('../includes/head.ejs')%>
+<link rel="stylesheet" href="css/auth.css">
+</head>
+<%- include('../includes/nav.ejs')%>
+
+
+        <div class="main">
+
+            <main class="main-container">
+
+                <form class="login-form" action="POST">
+                    <div class="user-img">
+                         <img src="img/user_icon.png" alt="Utilisateur">
+                    </div>
+                    <div class="one-line-form-control">
+                        <input type="text" name="nom" placeholder="Nom">   
+                        <input type="text" name="prenom" placeholder="Prénom">                 
+                    </div>
+
+                    <div class="form-control">
+                        <input type="email" name="email" placeholder="Email">                 
+                    </div>
+                    <div class="form-control">
+                        <input type="password" name="password" placeholder="Mot De Passe">
+                    </div>
+                    <div class="form-control">
+                        <input type="password" name="confirmPassword" placeholder="Confirmer Le mot de passe">
+                    </div>
+                    <!-- <div class="form-control remember" >
+                        <input type="checkbox" name="remember" >
+                        <label for="remember"> Se souvenir De moi </label>
+                    </div> -->
+                    <div class="form-control">
+                        <input type="submit" class="btn" value=" S'inscrire">
+                    </div>
+
+                    <div class="form-control"> 
+                        Déjà inscrits ? <a  href="/login"><b> Se Connecter</b> </a> 
+                    </div>
+                </form>
+
+
+            </main>
+
+        </div>
+
+
+
+    
+</body>
+</html>

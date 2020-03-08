@@ -7,9 +7,9 @@
         <nav class="main-header__nav" id="navRes">
             <ul class="main-header__tabs-list">
                 <li class="main-header__tab-item"><a href="/" class="active"> Home</a></li>
-                <li class="main-header__tab-item"><a href="/memo"> Mémos</a></li>
+                <li class="main-header__tab-item"><a href="/memos"> Mémos</a></li>
                 <li class="main-header__tab-item"><a href=""> Mes Mémos</a></li>
-                <li class="main-header__tab-item"><a href="/memo/add"> New Mémo</a></li>
+                <li class="main-header__tab-item"><a href="/add_memo"> New Mémo</a></li>
                 <li class="btn_item"> 
                     <a href="/login" class="btn" > Se connecter </a>
                 </li>
@@ -17,7 +17,7 @@
                     <a class="btn" href="/register"> S'inscrire </a>
                 </li>
                 <li class="main-header__tab-item">
-                    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                    <a href="javascript:void(0);" class="icon" onclick="goResponsive()">
                         <i class="fa fa-bars"></i>
                       </a>
                 </li>
@@ -27,7 +27,7 @@
     </header> 
 
     <script>
-        function myFunction() {
+        function goResponsive() {
           var x = document.getElementById("navRes");
           if (x.className === "main-header__nav") {
             x.className += " responsive";

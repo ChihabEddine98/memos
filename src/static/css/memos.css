@@ -1,3 +1,4 @@
+/* Liste Des mémos  */
 .main {
     display: block;
     align-items: center;
@@ -59,3 +60,9 @@
     border-radius: 3px;
     background-color: var(--text_hover_col);
 }
+
+/*  Ajouter un nouveau Mémo !  add_memo.ejs  */
+
+
+
+

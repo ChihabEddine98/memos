@@ -18,11 +18,16 @@ app.set('views','src/views')
 
 
 app.use(bodyParser.urlencoded({extended:false}))
-app.use(express.static(path.join(__dirname,'src','static')))
+app.use(express.static(path.join(__dirname,'src','static'),{
+    index: false, 
+    immutable: true, 
+    cacheControl: true,
+    maxAge: "30d"
+}))
 
 
 app.use('/admin',adminRoutes)
-app.use('/memo',memoRoutes)
+app.use(memoRoutes)
 app.use(authRoutes)
 
 app.get('/', (req, res,next)=>{

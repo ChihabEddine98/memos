@@ -17,7 +17,7 @@ body{
 .login-form{
     margin: auto;
     width: 30%;
-    height: 580px;
+    height: 40%;
     padding: 20px;
     align-items: center;
     display: block;
@@ -38,9 +38,9 @@ i{
 
 .form-control input{
 
-    width: 70%;
+    width: 73%;
     margin: 0 0 20px 0;
-    height: 40px;
+    height: 50px;
     text-align: center;
     border: solid var(--text_col);
     border-width: 2px;
@@ -50,6 +50,41 @@ i{
     display: inline-block;
     
 }
+textarea{
+    min-width: 70%;
+    max-width: 70%;
+    margin: 0 0 20px 0;
+    min-height: 200px;
+    max-height: 200px;
+    border: solid var(--text_col);
+    border-width: 2px;
+    border-radius: 12px;  
+    background-color: var(--overlay_fg_col);
+    font-size: 22px; 
+    overflow: auto;
+    padding: 10px;
+
+}
+input[type="file"]{
+    display: none;
+}
+.form-control .upload-img{
+
+    width: 70%;
+    margin: 0 0 20px 0;
+    height: 40px;
+    text-align: left;
+    border: solid var(--text_col);
+    border-width: 2px;
+    border-radius: 12px;  
+    background-color: var(--overlay_fg_col);
+    font-size: 22px; 
+    display: inline-block;
+    color: gray;
+    padding: 10px;
+    
+}
+
 
 .remember{
     margin: 10px 15%;
