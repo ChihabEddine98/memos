@@ -1,6 +1,7 @@
 const path=require('path')
 const express=require('express')
 const bodyParser=require('body-parser')
+const multer=require('multer')
 
 const db=require('./src/common/database')
 const Memo=require('./src/models/Memo')
@@ -19,7 +20,8 @@ app.set('views','src/views')
 
 
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended:true}))
+app.use(bodyParser.urlencoded({extended:false}))
+app.use(multer().single('memoImage'))
 app.use(express.static(path.join(__dirname,'src','static')))
 app.use((req,res,next) =>{
 

@@ -8,7 +8,7 @@
 
             <main class="main-container">
 
-                <form class="login-form" action="/add_memo" method="POST">
+                <form class="login-form" action="/add_memo" method="POST" enctype="multipart/form-data">
                     <div class="user-img">
                          <img src="img/add_memo.png" alt="Nouveau Memo">
                     </div>
@@ -16,7 +16,7 @@
                         <input type="text" name="title" placeholder="Titre du Mémo">                 
                     </div>
                     <div class="form-control">
-                        <input class="upload-img" type="file" name="imageUrl" placeholder="image">
+                        <input class="upload-img" type="file" name="memoImage" placeholder="image">
                     </div>
                     <div class="form-control">
                         <textarea name="description" cols="30" rows="10" placeholder="Détails de votre Mémo..."></textarea>
