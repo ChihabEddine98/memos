@@ -15,6 +15,11 @@
                         <img class="memo-img" src="<%= memo.imgUrl %> " alt="<%= memo.title%> ">
                         <p class="memo-desc"> <%= memo.description.substring(0,110) %><b>...</b></p>
                         <a href="memos/<%= memo.id %>" class="btn"> Plus De Détails</a>
+
+                        <form action="/delete_memo" method="POST">
+                            <input type="hidden" value="<%= memo.id %>" name="memoId">
+                            <input type="submit" class="btn" value="Supprimer"/> 
+                        </form>
                     </article>
                 <% } %> 
             <% } else {%>

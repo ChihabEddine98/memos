@@ -94,7 +94,7 @@ exports.postAddMemo =((req,res,next)=>
         {
          title,description,imgUrl
         }).then((result) => {
-            res.redirect('/memos')
+            res.redirect('/all_memos')
         }).catch((err) => {
             console.log(err)
         });
@@ -102,6 +102,26 @@ exports.postAddMemo =((req,res,next)=>
     res.render('../views/add_memo.ejs',{pageTitle :'Nouveau Mémo'})
 })
 
+
+exports.postDeleteMemo=((req,res,next)=>
+{
+    const memoId=req.body.memoId
+
+    Memo.findByPk(memoId)
+        .then((memo) => {
+            return memo.destroy()
+        })
+        .then( result =>
+            {
+                console.log (' Deleted...')
+                res.redirect('/mes_memos')
+            }
+        )
+        .catch((err) => {
+            console.log(err)
+        });
+
+}) 
 
 
 
