@@ -18,9 +18,20 @@ app.set('view engine','ejs')
 app.set('views','src/views')
 
 
-app.use(bodyParser.urlencoded({extended:false}))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended:true}))
 app.use(express.static(path.join(__dirname,'src','static')))
+app.use((req,res,next) =>{
 
+    User.findByPk(1)
+        .then(user =>
+            {
+                req.user=user
+                next()
+            }
+            )
+        .catch(err => console.log(err))
+} )
 
 app.use('/admin',adminRoutes)
 app.use(memoRoutes)
@@ -30,19 +41,32 @@ app.get('/', (req, res,next)=>{
     res.render('welcome',{pageTitle: 'Welcome Page'})
 })
 
+
+
 Memo.belongsTo(User,{constrains : true,onDelete :'CASCADE'})
 User.hasMany(Memo)
 
-db.sync({
-    force:true
-})
+// db.sync({
+//     force:true
+// })
+db.sync()
 .then(result => {
     console.log('Connection Réussie à La BDD !')
-    app.listen(PORT,function()
+    return User.findByPk(1)
+
+}).then( user => {
+    if (!user)
     {
-        console.log(`App is listening on port ${PORT} !`)
+        return User.create({first_name:'Chihab' , last_name: 'Benamara', email:'test@esi.dz'
+                            ,imageUrl:'haha.png',password:'123'})
     }
-)
+    return user
+}
+).then (user => {
+
+    app.listen(PORT)
+    console.log(`App is listening on port ${PORT} !`)
+
 })
 .catch(err => {
     console.log(err)
