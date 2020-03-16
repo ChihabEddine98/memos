@@ -1,6 +1,6 @@
 /* Liste Des mémos  */
 .main {
-    background-image: linear-gradient(to right, #e178bd, #ff879d, #ffa483, #ffc77c, #e9e990);
+    background-image: url('../img/bg_login.jpg');
     margin: 0;
     background-size: cover;
     display: block;
