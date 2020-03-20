@@ -114,13 +114,20 @@ exports.postAddMemo =((req,res,next)=>
             userId:req.user.id
         }
     )
-    memo
-    .save()
-    .then(result => {
-      // console.log(result);
-      console.log('Memo Crée')
-      res.redirect('all_memos')
-    })
+
+      User.findByPk(req.user.id)
+          .then( user =>{
+            
+            user.createMemo({
+                title:title,
+                description:description,
+                imgUrl:imgUrl,
+                userId:req.user.id
+            })
+            res.redirect('/all_memos')
+          })
+          .catch( err=> console.log(err))
+
     .catch(err => {
       console.log(err)
     })
@@ -130,6 +137,15 @@ exports.postAddMemo =((req,res,next)=>
                  isAuth : req.session.isLoggedIn})
 })
 
+
+exports.postShareMemo = ((req,res,next)=>{
+
+    const memoId=req.body.memoId
+    const selected_users=req.body.share_choices
+
+    console.log('chocies :',selected_users)
+
+})
 
 exports.postDeleteMemo=((req,res,next)=>
 {

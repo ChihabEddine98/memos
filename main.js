@@ -62,9 +62,12 @@ app.get('/', (req, res,next)=>{
 
 
 
-Memo.belongsTo(User,{constrains : true,onDelete :'CASCADE'})
-User.hasMany(Memo)
 
+User.belongsToMany(Memo, { through: 'User_Memo' ,onDelete: 'cascade', });
+Memo.belongsToMany(User, { through: 'User_Memo' ,onDelete: 'cascade', });
+
+//Memo.belongsTo(User,{constrains : true,onDelete :'CASCADE'})
+//User.hasMany(Memo)
 // db.sync({
 //     force:true
 // })

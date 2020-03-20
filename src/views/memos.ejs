@@ -22,7 +22,7 @@
                             <select id="share_memo" name="share_choices" multiple>
                                 <option id="0"> Choissisez les noms </option>
                                 <% for(let user of users) { %>
-                                 <option id="<%= user.id %>"><%= user.first_name+' '+user.last_name%> </option>
+                                 <option value="<%= user.id %>"><%= user.first_name+' '+user.last_name%> </option>
                                 <% } %>
                             </select>
                             <input type="submit" class="btn" value="Partager"/> 

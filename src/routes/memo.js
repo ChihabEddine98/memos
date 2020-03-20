@@ -10,5 +10,7 @@ router.get('/memos/:memoId',memoController.getMemo)
 
 router.post('/delete_memo',memoController.postDeleteMemo)
 router.post('/add_memo',memoController.postAddMemo)
+router.post('/share_memo',memoController.postShareMemo)
+
 
 module.exports=router
