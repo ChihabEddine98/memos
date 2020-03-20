@@ -15,6 +15,19 @@
                         <img class="memo-img" src="<%= memo.imgUrl %> " alt="<%= memo.title%> ">
                         <p class="memo-desc"> <%= memo.description.substring(0,110) %><b>...</b></p>
                         <a href="memos/<%= memo.id %>" class="btn"> Plus De Détails</a>
+                        
+                        <% if (canShare) { %>
+                        <form action="/share_memo" method="POST">
+                            <input type="hidden" value="<%= memo.id %>" name="memoId">
+                            <select id="share_memo" name="share_choices" multiple>
+                                <option id="0"> Choissisez les noms </option>
+                                <% for(let user of users) { %>
+                                 <option id="<%= user.id %>"><%= user.first_name+' '+user.last_name%> </option>
+                                <% } %>
+                            </select>
+                            <input type="submit" class="btn" value="Partager"/> 
+                        </form>
+                        <% } %>
 
                         <form action="/delete_memo" method="POST">
                             <input type="hidden" value="<%= memo.id %>" name="memoId">

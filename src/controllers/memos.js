@@ -40,7 +40,8 @@ exports.getMemos=((req,res,next)=>
                     res.render('../views/memos.ejs',
                     { pageTitle :'Mémos !',
                       memos:memos,
-                      isAuth: req.session.isLoggedIn
+                      isAuth: req.session.isLoggedIn,
+                      canShare:false
                     })
                 })
             .catch( err => console.log(err) )
@@ -53,11 +54,20 @@ exports.getMesMemos=((req,res,next)=>
     req.user.getMemos()
             .then(memos =>
                 {
-                    res.render('../views/memos.ejs',
-                    { pageTitle :'Mémos !',
-                      memos:memos,
-                      isAuth: req.session.isLoggedIn
+                    User.findAll()
+                    .then(users =>{
+                        res.render('../views/memos.ejs',
+                        { pageTitle :'Mémos !',
+                          memos:memos,
+                          users:users,
+                          isAuth: req.session.isLoggedIn,
+                          canShare:true
+                        })
                     })
+                    .catch(
+                        err=>console.log(err)
+                    )
+
                 })
             .catch( err => console.log(err) )
     
