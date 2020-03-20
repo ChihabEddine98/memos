@@ -2,6 +2,7 @@ const path=require('path')
 const express=require('express')
 const bodyParser=require('body-parser')
 const multer=require('multer')
+const session=require('express-session')
 
 const db=require('./src/common/database')
 const Memo=require('./src/models/Memo')
@@ -23,15 +24,26 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(multer().single('memoImage'))
 app.use(express.static(path.join(__dirname,'src','static')))
+
+app.use(session(
+        {
+            secret:'chihab',
+            resave: false,
+            saveUninitialized:false
+        }
+))
+
+
 app.use((req,res,next) =>{
 
-    User.findByPk(1)
-        .then(user =>
-            {
-                req.user=user
-                next()
-            }
-            )
+    if (!req.session.user) {
+        return next()
+      }
+      User.findByPk(req.session.user._id)
+        .then(user => {
+          req.user = user
+          next()
+        })
         .catch(err => console.log(err))
 } )
 
@@ -40,7 +52,11 @@ app.use(memoRoutes)
 app.use(authRoutes)
 
 app.get('/', (req, res,next)=>{
-    res.render('welcome',{pageTitle: 'Welcome Page'})
+    
+    res.render('welcome',
+        { pageTitle: 'Welcome Page',
+          isAuth: req.session.isLoggedIn
+        })
 })
 
 
@@ -51,23 +67,12 @@ User.hasMany(Memo)
 // db.sync({
 //     force:true
 // })
-db.sync()
+db.sync({ force:true})
 .then(result => {
     console.log('Connection Réussie à La BDD !')
-    return User.findByPk(1)
-
-}).then( user => {
-    if (!user)
-    {
-        return User.create({first_name:'Chihab' , last_name: 'Benamara', email:'test@esi.dz'
-                            ,imageUrl:'haha.png',password:'123'})
-    }
-    return user
-}
-).then (user => {
-
     app.listen(PORT)
     console.log(`App is listening on port ${PORT} !`)
+
 
 })
 .catch(err => {

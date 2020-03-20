@@ -39,7 +39,8 @@ exports.getMemos=((req,res,next)=>
                 {
                     res.render('../views/memos.ejs',
                     { pageTitle :'Mémos !',
-                    memos:memos
+                      memos:memos,
+                      isAuth: req.session.isLoggedIn
                     })
                 })
             .catch( err => console.log(err) )
@@ -54,7 +55,8 @@ exports.getMesMemos=((req,res,next)=>
                 {
                     res.render('../views/memos.ejs',
                     { pageTitle :'Mémos !',
-                    memos:memos
+                      memos:memos,
+                      isAuth: req.session.isLoggedIn
                     })
                 })
             .catch( err => console.log(err) )
@@ -68,8 +70,9 @@ exports.getMemo =((req,res,next)=>
         .then( memo => 
             {
             res.render('../views/memo_detail.ejs',
-            { pageTitle :'Mémos Detail !',
-                memo :memo
+            {   pageTitle :'Mémos Detail !',
+                memo :memo,
+                isAuth: req.session.isLoggedIn
             })
             }
         )
@@ -80,7 +83,11 @@ exports.getMemo =((req,res,next)=>
 
 exports.getAddMemo=((req,res,next)=>
 {
-    res.render('../views/add_memo.ejs',{pageTitle :'Nouveau Mémo'})
+    res.render('../views/add_memo.ejs',
+                {
+                  pageTitle :'Nouveau Mémo',
+                  isAuth: req.session.isLoggedIn 
+                })
 })
 
 
