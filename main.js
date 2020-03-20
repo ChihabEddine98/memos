@@ -12,7 +12,25 @@ const adminRoutes=require('./src/routes/admin')
 const memoRoutes=require('./src/routes/memo')
 const authRoutes=require('./src/routes/auth')
 
+const fileStore=multer.diskStorage({
+    destination :(req,file,cb)=>{
+        cb(null,'images')
+    },
+    filename: (req,file,cb)=>{
+        cb(null,new Date().toISOString()+'__'+file.originalname)
+    }
+})
 
+const fileFilter=(req,file,cb)=>{
+    if(file.mimetype ==='image/jpg' || file.mimetype ==='image/png' 
+            ||file.mimetype ==='image/jpeg')
+            {
+                cb(null,true)
+            }
+    else{
+        cb(null,false)
+    }
+}
 const PORT = 8080
 
 app=express()
@@ -22,7 +40,8 @@ app.set('views','src/views')
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:false}))
-app.use(multer().single('memoImage'))
+app.use(multer({storage:fileStore,fileFilter:fileFilter}).single('userImage'))
+
 app.use(express.static(path.join(__dirname,'src','static')))
 
 app.use(session(

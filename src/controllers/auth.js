@@ -22,8 +22,10 @@ exports.postRegister =((req,res,next)=>{
     const prenom =req.body.prenom
     const email=req.body.email
     const password=req.body.password
+    const image=req.file
     const confirm=req.body.confirmPassword
 
+    console.log(image)
     User.findOne({where :{email:email}})
     .then(user => {
         if (user) {

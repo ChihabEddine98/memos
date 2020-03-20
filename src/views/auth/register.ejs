@@ -8,7 +8,7 @@
 
             <main class="main-container">
 
-                <form class="login-form" action="/register" method="POST">
+                <form class="login-form" action="/register" method="POST" enctype="multipart/form-data">
                     <div class="user-img">
                          <img src="img/user_icon.png" alt="Utilisateur">
                     </div>
@@ -26,10 +26,9 @@
                     <div class="form-control">
                         <input type="password" name="confirmPassword" placeholder="Confirmer Le mot de passe">
                     </div>
-                    <!-- <div class="form-control remember" >
-                        <input type="checkbox" name="remember" >
-                        <label for="remember"> Se souvenir De moi </label>
-                    </div> -->
+                    <div>
+                        <input class="upload-img" type="file" name="userImage" placeholder="image">
+                    </div>
                     <div class="form-control">
                         <input type="submit" class="btn" value=" S'inscrire">
                     </div>
