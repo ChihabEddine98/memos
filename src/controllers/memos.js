@@ -1,6 +1,8 @@
 const Memo = require('../models/Memo')
 const User=require('../models/User')
 const Sqlz=require('sequelize')
+const Common=require('../common/common')
+
 
 let memos=[ 
     {title : 'Objet Trouvé ',
@@ -33,6 +35,12 @@ description :"Le Lorem Ipsum est rression. Le Lorem Ipsum est le faux texte stan
 }
 ]
 
+userFullName = async function(userId) {
+        
+        const user=await User.findByPk(userId)
+        return user.first_name+' '+user.last_name
+} 
+
 exports.getMemos=((req,res,next)=>
 {
     Memo.findAll()
@@ -42,7 +50,8 @@ exports.getMemos=((req,res,next)=>
                     { pageTitle :'Mémos !',
                       memos:memos,
                       isAuth: req.session.isLoggedIn,
-                      canShare:false
+                      canShare:false,
+                      userId:req.user.id
                     })
                 })
             .catch( err => console.log(err) )
@@ -63,12 +72,15 @@ exports.getMesMemos=((req,res,next)=>
                         }
                       })
                     .then(users =>{
+
+    
                         res.render('../views/memos.ejs',
                         { pageTitle :'Mémos !',
                           memos:memos,
                           users:users,
                           isAuth: req.session.isLoggedIn,
-                          canShare:true
+                          canShare:true,
+                          userId:req.user.id
                         })
                     })
                     .catch(
