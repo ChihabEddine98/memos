@@ -43,6 +43,41 @@ exports.postRegister =((req,res,next)=>{
 })
 
 
+exports.postLogin = ((req,res,next)=>{
+
+    const email=req.body.email
+    const password= req.body.password
+
+    User.findOne({email:email})
+        .then( user =>{
+
+            if(!user)
+            {
+                return res.redirect('/login')
+            }
+
+            bcrypt.compare(password,user.password)
+                  .then(ok=>{
+                        if (ok)
+                        {
+                          req.session.isLoggedIn = true
+                          req.user=user
+                          return req.session.save(err=>{
+                              console.log(err)
+                              res.redirect('/')
+                          })
+                        }
+
+                        return res.redirect('/login')
+                     })
+                .catch(err=>console.log(err))
+
+        })
+        .catch(err=>console.log(err))
+
+})
+
+
 
 
 
