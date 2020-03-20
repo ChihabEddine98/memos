@@ -15,7 +15,9 @@ const Memo =db.define('memo',{
     imgUrl: {
         type : Sqlz.STRING,
         allowNull:false
-    }
+    },
+    owner : Sqlz.INTEGER
+
 })
 
 

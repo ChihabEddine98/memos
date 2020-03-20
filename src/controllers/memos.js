@@ -106,14 +106,7 @@ exports.postAddMemo =((req,res,next)=>
     const title = req.body.title
     const description= req.body.description
     const imgUrl = 'url hehe...'
-    const memo=new Memo(
-        {
-            title:title,
-            description:description,
-            imgUrl:imgUrl,
-            userId:req.user.id
-        }
-    )
+
 
       User.findByPk(req.user.id)
           .then( user =>{
@@ -122,12 +115,14 @@ exports.postAddMemo =((req,res,next)=>
                 title:title,
                 description:description,
                 imgUrl:imgUrl,
+                owner:req.user.id,
                 userId:req.user.id
+                    })
+            .then(result => {
+                res.redirect('/all_memos')
             })
-            res.redirect('/all_memos')
+            .catch( err=> console.log(err))
           })
-          .catch( err=> console.log(err))
-
     .catch(err => {
       console.log(err)
     })
@@ -143,7 +138,21 @@ exports.postShareMemo = ((req,res,next)=>{
     const memoId=req.body.memoId
     const selected_users=req.body.share_choices
 
-    console.log('chocies :',selected_users)
+    Memo.findByPk(memoId)
+        .then(memo =>{
+            
+            User.findAll({where :{id:selected_users }})
+                .then( users => {
+                    for(let user of users)
+                    {
+                        user.addMemo(memo)
+                    }
+
+                    res.redirect('/')
+                })
+                .catch(err =>console.log(err))
+        })
+        .catch(err =>console.log(err))
 
 })
 

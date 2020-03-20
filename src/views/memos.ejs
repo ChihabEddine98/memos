@@ -10,7 +10,7 @@
             <% if (memos.length >0) { %> 
                 <% for(let memo of memos) { %> 
                     <article class="memo">
-                        <h2 class="memo-title"> <%= memo.title %>  </h2>
+                        <h2 class="memo-title"> <%= memo.title %> By: <%= owner.first_name+' '+owner.last_name %>   </h2>
                         <h4 class="memo-last-update"> Derniere Modification : <%= memo.updatedAt.toISOString().slice(0,10) %></h4>
                         <img class="memo-img" src="<%= memo.imgUrl %> " alt="<%= memo.title%> ">
                         <p class="memo-desc"> <%= memo.description.substring(0,110) %><b>...</b></p>
