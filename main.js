@@ -39,7 +39,8 @@ app.use((req,res,next) =>{
     if (!req.session.user) {
         return next()
       }
-      User.findByPk(req.session.user._id)
+      
+      User.findByPk(req.session.user.id)
         .then(user => {
           req.user = user
           next()
@@ -67,7 +68,7 @@ User.hasMany(Memo)
 // db.sync({
 //     force:true
 // })
-db.sync({ force:true})
+db.sync()
 .then(result => {
     console.log('Connection Réussie à La BDD !')
     app.listen(PORT)

@@ -96,17 +96,28 @@ exports.postAddMemo =((req,res,next)=>
     const title = req.body.title
     const description= req.body.description
     const imgUrl = 'url hehe...'
-
-    req.user.createMemo(
+    const memo=new Memo(
         {
-         title,description,imgUrl
-        }).then((result) => {
-            res.redirect('/all_memos')
-        }).catch((err) => {
-            console.log(err)
-        });
+            title:title,
+            description:description,
+            imgUrl:imgUrl,
+            userId:req.user.id
+        }
+    )
+    memo
+    .save()
+    .then(result => {
+      // console.log(result);
+      console.log('Memo Crée')
+      res.redirect('all_memos')
+    })
+    .catch(err => {
+      console.log(err)
+    })
 
-    res.render('../views/add_memo.ejs',{pageTitle :'Nouveau Mémo'})
+    res.render('../views/add_memo.ejs',
+                {pageTitle :'Nouveau Mémo',
+                 isAuth : req.session.isLoggedIn})
 })
 
 
