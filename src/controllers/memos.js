@@ -1,5 +1,6 @@
 const Memo = require('../models/Memo')
 const User=require('../models/User')
+const Sqlz=require('sequelize')
 
 let memos=[ 
     {title : 'Objet Trouvé ',
@@ -54,7 +55,13 @@ exports.getMesMemos=((req,res,next)=>
     req.user.getMemos()
             .then(memos =>
                 {
-                    User.findAll()
+                    User.findAll({
+                        where: {
+                          id: {
+                            [Sqlz.Op.not]: req.user.id
+                          }
+                        }
+                      })
                     .then(users =>{
                         res.render('../views/memos.ejs',
                         { pageTitle :'Mémos !',
