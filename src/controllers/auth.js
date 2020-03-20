@@ -1,4 +1,5 @@
 const User = require('../models/User')
+const bcrypt = require('bcryptjs')
 
 exports.getLogin =((req,res,next)=>{
     res.render('../views/auth/login.ejs',{ pageTitle :'Connection à Mémos'})
@@ -18,22 +19,21 @@ exports.postRegister =((req,res,next)=>{
     User.findOne({where :{email:email}})
     .then((user) => {
         if(!user)
-        {
-            User.create({
-                email:email,
-                password : password,
-                first_name: prenom,
-                last_name:nom
-            })
-
-            res.render('../views/auth/login.ejs',{ pageTitle :'Connection à Mémos'})
-        }
-        else  // Exist Déja !
-        {
-            console.log('connectez vous !')    
+        {   
+            return bcrypt.hash(password,12)
         }
             
-    }).catch((err) => {
+    }).then( hashed_ps => {
+        User.create({
+            email:email,
+            password : hashed_ps,
+            first_name: prenom,
+            last_name:nom
+        })
+
+        res.redirect('/login')
+    })
+    .catch((err) => {
         
     });
 
