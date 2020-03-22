@@ -1,0 +1,39 @@
+.main {
+    margin: 0;
+    background-size: cover;
+    display: block;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+table {
+    width: 100%;
+}
+
+table tr {
+    border-bottom: 1px solid var(--bg-col);
+    height: 60px;
+    padding: 10px 10px;
+}
+
+table th {
+    border-right: 1px solid var(--police-col);
+    text-align: center;
+}
+
+table th:last-child {
+    border-right: none;
+}
+
+
+
+table tr:last-child {
+    border-bottom: none;
+}
+
+td {
+    margin-left: 10px;
+    padding: 0 30px;
+
+}

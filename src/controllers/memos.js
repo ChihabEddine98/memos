@@ -20,7 +20,7 @@ exports.getMemos=((req,res,next)=>
                       memos:memos,
                       isAuth: req.session.isLoggedIn,
                       canShare:false,
-                      
+                      userId:req.user.id
                     })
                 })
             .catch( err => console.log(err) )

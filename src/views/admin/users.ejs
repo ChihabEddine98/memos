@@ -1,0 +1,87 @@
+<%- include('../includes/admin_head.ejs')%>
+<link rel="stylesheet" href="/css/users.css">
+</head>
+<%- include('../includes/admin_nav.ejs')%>
+
+<div class="main">
+
+    <div class="add_user">
+
+        <h4>
+            Ajouter un nouveau utilisateur ?
+        </h4>
+
+        <a href="">
+            <i class="fas fa-plus" > <span style="font-family: Futura;">Ajouter</span> </i>
+        </a>
+    
+    </div>
+
+    <hr>
+
+
+    <div class="users">
+
+        <h2> Utilisateurs !</h2>
+        <table>
+            <thead>
+            <tr>
+                <td></td>
+                <td> Prénoms </td>
+                <td> Nom </td>
+                <td> Sexe </td>
+                <td> Email </td>
+                <td> Role </td>
+                <td></td>
+            </tr>
+            </thead>
+            <tbody>
+
+            <% for(let user of users) { %>
+                <tr>
+                    <td>
+                        <% if (!user.img_url) { %>
+                            <% if (user.sexe==='m'){ %>
+                                <img class="userImgList" src="profil_pic.png" alt="photo de profil"/>
+                            <% }else { %>
+                                <img class="userImgList" src="profil_pic_female.png" alt="photo de profil"/>
+                        <% }}else { %>
+                            <img class="userImgList" src="<%= user.img_url %>" alt="photo de profil"/>
+                        <% } %>
+
+                    </td>
+                    <td> <%= user.first_name %></td>
+                    <td> <%= user.last_name %> </td>
+                    <td>
+                       <% if (user.sexe==='m') { %>
+                           <i class="fas fa-male " style="font-size: 38px; color: #00b3ee;"></i>
+                       <% }else { %>
+                           <i class="fas fa-female" style="font-size: 38px; color: #ee84d6;"></i>
+                       <% } %>
+
+                    </td>
+                    <td> <%= user.email %></td> 
+                    <td> <%= user.role %></td> 
+                    <td>
+                        <form action="/admin/edit_user" method="POST">
+                            <input type="hidden" value="<%= user.id %>" name="userId">
+                            <input type="submit" class="btn" value="Modifier"/> 
+                        </form>
+                    </td>
+                </tr>
+            <% } %>
+
+
+
+
+
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+    
+</body>
+</html>
