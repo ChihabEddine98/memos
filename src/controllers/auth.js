@@ -38,7 +38,8 @@ exports.postRegister =((req,res,next)=>{
               email: email,
               password: hashedPass,
               first_name: prenom,
-              last_name:nom
+              last_name:nom,
+              role : 'USER'
             });
             return user.save();
           })
@@ -75,10 +76,19 @@ exports.postLogin = ((req,res,next)=>{
             req.session.isLoggedIn = true
             req.session.user = user
             
-            return req.session.save(err => {
-              console.log(err)
-              res.redirect('/')
-            })
+            if (user.role==='ADMIN'){
+              return req.session.save(err => {
+                console.log(err)
+                res.redirect('/admin')
+              })
+            }
+            else {
+              return req.session.save(err => {
+                console.log(err)
+                res.redirect('/')
+              })
+            }
+
           }
           res.redirect('/login')
         })
