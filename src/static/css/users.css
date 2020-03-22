@@ -1,5 +1,5 @@
 .main {
-    background: linear-gradient(to right, #cac531, #f3f9a7);
+    /* background: linear-gradient(to right, #cac531, #f3f9a7); */
     margin: 0;
     background-size: cover;
     display: block;
@@ -48,7 +48,14 @@
     margin: 5px 0;
     
 }
+.sexeImg{
 
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin: 5px 0;
+    
+}
 table {
     width: 100%;
 }

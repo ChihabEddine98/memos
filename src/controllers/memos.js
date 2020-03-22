@@ -20,7 +20,8 @@ exports.getMemos=((req,res,next)=>
                       memos:memos,
                       isAuth: req.session.isLoggedIn,
                       canShare:false,
-                      userId:req.user.id
+                      userId:req.user.id,
+                      user : req.user
                     })
                 })
             .catch( err => console.log(err) )
@@ -49,7 +50,8 @@ exports.getMesMemos=((req,res,next)=>
                           users:users,
                           isAuth: req.session.isLoggedIn,
                           canShare:true,
-                          userId:req.user.id
+                          userId:req.user.id,
+                          user : req.user
                         })
                     })
                     .catch(
@@ -70,7 +72,8 @@ exports.getMemo =((req,res,next)=>
             res.render('../views/memo_detail.ejs',
             {   pageTitle :'Mémos Detail !',
                 memo :memo,
-                isAuth: req.session.isLoggedIn
+                isAuth: req.session.isLoggedIn,
+                user : req.user
             })
             }
         )
@@ -84,7 +87,8 @@ exports.getAddMemo=((req,res,next)=>
     res.render('../views/add_memo.ejs',
                 {
                   pageTitle :'Nouveau Mémo',
-                  isAuth: req.session.isLoggedIn 
+                  isAuth: req.session.isLoggedIn ,
+                  user : req.user
                 })
 })
 

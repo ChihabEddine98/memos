@@ -69,3 +69,22 @@ exports.getStats =((req,res,next)=> {
     })
 
 })
+
+exports.getMemo =((req,res,next)=> 
+{
+    const memoId=req.params.memoId
+    Memo.findByPk(memoId)
+        .then( memo => 
+            {
+            res.render('../views/admin/memo_detail.ejs',
+            {   pageTitle :'Mémos Detail !',
+                memo :memo,
+                isAuth: req.session.isLoggedIn,
+                user : req.user
+            })
+            }
+        )
+        .catch(err => console.log(err))
+
+
+})

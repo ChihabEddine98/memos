@@ -20,8 +20,20 @@
                     <% } else { %>
                         <li class="btn_item">
                             <form action="/logout" method="post">
-                                <button type="submit"> Se déconnecter</button>
+                                <button type="submit" id="btn_logout"> 
+                                    <img src="/img/logout_icon.png" alt="" class="userImg">
+                                </button>
                             </form>
+                        </li>
+                        <li>
+                            <% if (!user.img_url) { %>
+                                <% if (user.sexe==='m'){ %>
+                                    <img class="userImgList" src="profil_pic.png" alt="photo de profil"/>
+                                <% }else { %>
+                                    <img class="userImgList" src="profil_pic_female.png" alt="photo de profil"/>
+                            <% }}else { %>
+                                <img class="userImg" src="<%= user.img_url %>" alt="photo de profil"/>
+                            <% } %>
                         </li>
                     <% } %>
             

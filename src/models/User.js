@@ -15,7 +15,8 @@ const User=db.define('user',{
     email : Sqlz.STRING(255),
     password: Sqlz.STRING(512),
     img_url :Sqlz.STRING(300) ,
-    role:Sqlz.STRING
+    role:Sqlz.STRING,
+    sexe : Sqlz.STRING
 
 })
 

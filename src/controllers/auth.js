@@ -39,7 +39,8 @@ exports.postRegister =((req,res,next)=>{
               password: hashedPass,
               first_name: prenom,
               last_name:nom,
-              role : 'USER'
+              role : 'USER',
+              sexe : 'm'
             });
             return user.save();
           })

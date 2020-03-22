@@ -42,11 +42,11 @@
                     <td>
                         <% if (!user.img_url) { %>
                             <% if (user.sexe==='m'){ %>
-                                <img class="userImgList" src="profil_pic.png" alt="photo de profil"/>
+                                <img class="userImgList" src="/img/male_profil.jpg" alt=""/>
                             <% }else { %>
-                                <img class="userImgList" src="profil_pic_female.png" alt="photo de profil"/>
+                                <img class="userImgList" src="/img/female_profil.jpg" alt=""/>
                         <% }}else { %>
-                            <img class="userImgList" src="<%= user.img_url %>" alt="photo de profil"/>
+                            <img class="userImgList" src="<%= user.img_url %>" alt=""/>
                         <% } %>
 
                     </td>
@@ -54,14 +54,20 @@
                     <td> <%= user.last_name %> </td>
                     <td>
                        <% if (user.sexe==='m') { %>
-                           <i class="fas fa-male " style="font-size: 38px; color: #00b3ee;"></i>
+                           <img src="/img/male.png"  class="sexeImg" alt="">
                        <% }else { %>
-                           <i class="fas fa-female" style="font-size: 38px; color: #ee84d6;"></i>
+                           <img src="/img/female.png"  class="sexeImg" alt="">
                        <% } %>
 
                     </td>
                     <td> <%= user.email %></td> 
-                    <td> <%= user.role %></td> 
+                    <td>
+                        <% if ( user.role=='ADMIN' ) { %>
+                            <img class="userImgList" src="/img/admin_icon.png" alt=""/>
+                            <% }else { %>
+                                <img class="userImgList" src="/img/simple_icon.png" alt=""/>
+                        <% }%>
+                    </td> 
                     
                     <td>
                         <form action="/admin/edit_user" method="POST">
