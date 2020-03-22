@@ -1,5 +1,6 @@
 const Memo=require('../models/Memo')
 const User=require('../models/User')
+const Sqlz=require('sequelize')
 
 exports.getIndex =((req,res,next)=> {
 
@@ -76,12 +77,23 @@ exports.getMemo =((req,res,next)=>
     Memo.findByPk(memoId)
         .then( memo => 
             {
-            res.render('../views/admin/memo_detail.ejs',
-            {   pageTitle :'Mémos Detail !',
-                memo :memo,
-                isAuth: req.session.isLoggedIn,
-                user : req.user
-            })
+                User.findAll({
+                    where: {
+                      id: {
+                        [Sqlz.Op.not]: req.user.id
+                      }
+                    }
+                  }).then( users =>{
+                    res.render('../views/admin/memo_detail.ejs',
+                    {   pageTitle :'Mémos Detail !',
+                        memo :memo,
+                        isAuth: req.session.isLoggedIn,
+                        user : req.user,
+                        users :users,
+                        isAdmin :req.session.isAdmin
+                    })
+                  })
+
             }
         )
         .catch(err => console.log(err))

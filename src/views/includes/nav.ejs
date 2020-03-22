@@ -28,9 +28,9 @@
                         <li>
                             <% if (!user.img_url) { %>
                                 <% if (user.sexe==='m'){ %>
-                                    <img class="userImgList" src="profil_pic.png" alt="photo de profil"/>
+                                    <img class="userImg" src="/img/male_profil.jpg" alt=""/>
                                 <% }else { %>
-                                    <img class="userImgList" src="profil_pic_female.png" alt="photo de profil"/>
+                                    <img class="userImg" src="/img/male_profil.jpg" alt=""/>
                             <% }}else { %>
                                 <img class="userImg" src="<%= user.img_url %>" alt="photo de profil"/>
                             <% } %>

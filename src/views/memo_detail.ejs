@@ -4,16 +4,35 @@
 <%- include('includes/nav.ejs')%>
 
 <div class="main">
-    <h1> Details ! </h1>
     <main class="main-container"> 
-            
-        <h1>  <%= memo.title %></h1>
-           
-        <h2 class="memo-title"> <%= memo.title %>  </h2>
-        <h4 class="memo-last-update"> Derniere Modification : 04/03/2020-18h30</h4>
-        <img class="memo-img" src="/img/memos_bg.jpg" alt="<%= memo.title%> ">
-        <p class="memo-desc"> <%= memo.description %></p>
-        <a href="/memo/<%= memo.id %>" class="btn"> Plus De Détails</a>
+        
+           <div>
+             <img class="memoImg" src="/img/memos_bg.jpg" alt="<%= memo.title%> ">
+           </div>
+           <div>
+             <h1 class="memoTitle">  <%= memo.title %></h1>
+           </div>
+           <div>
+            <h4 class="memoDate"> Derniere Modification : <%= memo.updatedAt.toISOString().slice(0,10)+' / '+memo.updatedAt.toISOString().slice(11,16) %></h4>
+          </div>
+
+          <div>
+            <p class="memoDesc"> <%= memo.description %></p>
+          </div>
+
+
+            <form action="/share_memo" method="POST">
+                <input type="hidden" value="<%= memo.id %>" name="memoId">
+                <select id="share_memo" name="share_choices" multiple>
+                    <option id="0"> Choissisez les noms </option>
+                    <% for(let user of users) { %>
+                     <option value="<%= user.id %>"><%= user.first_name+' '+user.last_name%> </option>
+                    <% } %>
+                </select>
+                <input type="submit" class="btn" value="Partager"/> 
+            </form>
+        
+        
         
     </main>
 </div>

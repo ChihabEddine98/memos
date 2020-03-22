@@ -76,7 +76,8 @@ app.get('/', (req, res,next)=>{
     res.render('welcome',
         { pageTitle: 'Welcome Page',
           isAuth: req.session.isLoggedIn,
-          user : req.user
+          user : req.user,
+          isAdmin:req.session.isAdmin
         })
 })
 

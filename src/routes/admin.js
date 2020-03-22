@@ -10,4 +10,6 @@ router.get('/add_memo',adminController.getAddMemo)
 router.get('/stats',adminController.getStats)
 router.get('/memos/:memoId',adminController.getMemo)
 
+
+
 module.exports=router

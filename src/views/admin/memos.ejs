@@ -13,36 +13,39 @@
                         <% if(memo.owner !== userId && canShare ) { %>
                             <h2 class="memo-title"> Partagé ! </h2>
                         <% } %>
-                        <div class="memoHead">
-                            <h2 class="memo-title"> <%= memo.title %> </h2>
-                            <img class="memo-img" src="/img/memos_bg.jpg" alt="<%= memo.title%> ">
-                        </div>
-                        <!-- <h4 class="memo-last-update"> Derniere Modification : <%= memo.updatedAt.toISOString().slice(0,10) %></h4> -->
-                        <p class="memo-desc"> <%= memo.description.substring(0,80) %><b>...</b></p>
-                        <div class="actions">
-                            <a href="memos/<%= memo.id %>" > 
-                                <img src="/img/add_icon.png" class="detailImg" alt="">
+                        <div class="rowMemo">
+                            <a href="memos/<%= memo.id %>">
+                                <img class="memo-img" src="/img/memos_bg.jpg" alt="<%= memo.title%> ">
                             </a>
-                            <% if (canShare) { %>
-                                <form action="/share_memo" method="POST">
-                                    <input type="hidden" value="<%= memo.id %>" name="memoId">
-                                    <select id="share_memo" name="share_choices" multiple>
-                                        <option id="0"> Choissisez les noms </option>
-                                        <% for(let user of users) { %>
-                                         <option value="<%= user.id %>"><%= user.first_name+' '+user.last_name%> </option>
-                                        <% } %>
-                                    </select>
-                                    <input type="submit" class="btn" value="Partager"/> 
-                                </form>
-                                <% } %>
+                        </div>
+                        <div class="rowMemo">
+                            <h2 class="memo-title"> <%= memo.title %> </h2>
+                        </div>
+
+                        <!-- <h4 class="memo-last-update"> Derniere Modification : <%= memo.updatedAt.toISOString().slice(0,10) %></h4> -->
+                        <!-- <p class="memo-desc"> <%= memo.description.substring(0,80) %><b>...</b></p> -->
+                        <div class="actions">
+                            <a href="memos/<%= memo.id %>" class="btn"> 
+                                Details<!-- <img src="/img/add_icon.png" class="detailImg" alt=""> -->
+                            </a>
+                            
         
-                                <form action="/delete_memo" method="POST">
-                                    <input type="hidden" value="<%= memo.id %>" name="memoId">
-                                     
-                                    <button type="submit">
-                                        <img src="/img/delete.png" class="deleteImg" alt="" >
-                                    </button>
-                                </form> 
+                            <form action="/edit_memo" method="POST">
+                                <input type="hidden" value="<%= memo.id %>" name="memoId">
+    
+                                <button type="submit" class="btn">
+                                    Modifier
+                                </button>
+                            </form> 
+
+                            <form action="/delete_memo" method="POST">
+                                <input type="hidden" value="<%= memo.id %>" name="memoId">
+                                    
+                                <button type="submit" class="btn">
+                                    Supprimer
+                                    <!-- <img src="/img/delete.png" class="deleteImg" alt="" > -->
+                                </button>
+                            </form> 
 
                         </div>
 

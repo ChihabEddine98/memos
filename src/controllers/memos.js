@@ -69,12 +69,23 @@ exports.getMemo =((req,res,next)=>
     Memo.findByPk(memoId)
         .then( memo => 
             {
-            res.render('../views/memo_detail.ejs',
-            {   pageTitle :'Mémos Detail !',
-                memo :memo,
-                isAuth: req.session.isLoggedIn,
-                user : req.user
-            })
+                User.findAll({
+                    where: {
+                      id: {
+                        [Sqlz.Op.not]: req.user.id
+                      }
+                    }
+                  }).then( users =>{
+                    res.render('../views/memo_detail.ejs',
+                    {   pageTitle :'Mémos Detail !',
+                        memo :memo,
+                        isAuth: req.session.isLoggedIn,
+                        user : req.user,
+                        users :users,
+                        isAdmin :req.session.isAdmin
+                    })
+                  })
+
             }
         )
         .catch(err => console.log(err))
@@ -111,7 +122,15 @@ exports.postAddMemo =((req,res,next)=>
                 userId:req.user.id
                     })
             .then(result => {
-                res.redirect('/all_memos')
+                if( req.session.isAdmin)
+                {
+                   return res.redirect('/admin/all_memos')
+                }
+                else
+                {
+                   return res.redirect('/all_memos')
+                }
+                
             })
             .catch( err=> console.log(err))
           })
@@ -119,9 +138,9 @@ exports.postAddMemo =((req,res,next)=>
       console.log(err)
     })
 
-    res.render('../views/add_memo.ejs',
-                {pageTitle :'Nouveau Mémo',
-                 isAuth : req.session.isLoggedIn})
+    // res.render('../views/add_memo.ejs',
+    //             {pageTitle :'Nouveau Mémo',
+    //              isAuth : req.session.isLoggedIn})
 })
 
 
@@ -140,7 +159,14 @@ exports.postShareMemo = ((req,res,next)=>{
                         user.addMemo(memo)
                     }
 
-                    res.redirect('/')
+                    if( req.session.isAdmin)
+                    {
+                       return res.redirect('/admin')
+                    }
+                    else
+                    {
+                       return res.redirect('/mes_memos')
+                    }
                 })
                 .catch(err =>console.log(err))
         })
@@ -159,7 +185,14 @@ exports.postDeleteMemo=((req,res,next)=>
         .then( result =>
             {
                 console.log (' Deleted...')
-                res.redirect('/mes_memos')
+                if( req.session.isAdmin)
+                {
+                    res.redirect('/admin/all_memos')
+                }
+                else
+                {
+                    res.redirect('/mes_memos')
+                }
             }
         )
         .catch((err) => {

@@ -19,6 +19,19 @@
           <div>
             <p class="memoDesc"> <%= memo.description %></p>
           </div>
+
+
+            <form action="/share_memo" method="POST">
+                <input type="hidden" value="<%= memo.id %>" name="memoId">
+                <select id="share_memo" name="share_choices" multiple>
+                    <option id="0"> Choissisez les noms </option>
+                    <% for(let user of users) { %>
+                     <option value="<%= user.id %>"><%= user.first_name+' '+user.last_name%> </option>
+                    <% } %>
+                </select>
+                <input type="submit" class="btn" value="Partager"/> 
+            </form>
+        
         
         
     </main>

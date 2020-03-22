@@ -80,12 +80,14 @@ exports.postLogin = ((req,res,next)=>{
             if (user.role==='ADMIN'){
               return req.session.save(err => {
                 console.log(err)
+                req.session.isAdmin = true
                 res.redirect('/admin')
               })
             }
             else {
               return req.session.save(err => {
                 console.log(err)
+                req.session.isAdmin = false
                 res.redirect('/')
               })
             }
