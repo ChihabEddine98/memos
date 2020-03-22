@@ -7,6 +7,7 @@ exports.getIndex =((req,res,next)=> {
     {
        pageTitle :' Admin Panel ' ,
        isAuth :req.session.isLoggedIn,
+       user : req.user
     })
 
 })
@@ -20,7 +21,8 @@ exports.getUsers =((req,res,next)=> {
                     { pageTitle :'Users !',
                       users:users,
                       isAuth: req.session.isLoggedIn,
-                      userId:req.user.id
+                      userId:req.user.id,
+                      user : req.user
                     })
                 })
             .catch( err => console.log(err) )
@@ -39,7 +41,8 @@ exports.getMemos=((req,res,next)=>
                       memos:memos,
                       isAuth: req.session.isLoggedIn,
                       canShare:false,
-                      userId:req.user.id
+                      userId:req.user.id,
+                      user : req.user
                     })
                 })
             .catch( err => console.log(err) )
@@ -51,7 +54,8 @@ exports.getAddMemo=((req,res,next)=>
     res.render('../views/admin/add_memo.ejs',
                 {
                   pageTitle :'Nouveau Mémo',
-                  isAuth: req.session.isLoggedIn 
+                  isAuth: req.session.isLoggedIn ,
+                  user : req.user
                 })
 })
 
@@ -61,6 +65,7 @@ exports.getStats =((req,res,next)=> {
     {
        pageTitle :' Admin Panel ' ,
        isAuth :req.session.isLoggedIn,
+       user : req.user
     })
 
 })

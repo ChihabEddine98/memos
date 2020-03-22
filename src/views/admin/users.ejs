@@ -11,8 +11,8 @@
             Ajouter un nouveau utilisateur ?
         </h4>
 
-        <a href="">
-            <i class="fas fa-plus" > <span style="font-family: Futura;">Ajouter</span> </i>
+        <a href="" class="btn">
+            Ajouter
         </a>
     
     </div>
@@ -62,6 +62,7 @@
                     </td>
                     <td> <%= user.email %></td> 
                     <td> <%= user.role %></td> 
+                    
                     <td>
                         <form action="/admin/edit_user" method="POST">
                             <input type="hidden" value="<%= user.id %>" name="userId">

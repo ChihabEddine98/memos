@@ -47,6 +47,15 @@ body{
 
 }
 
+.userImg {
+
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin: 5px 0;
+  float: right;
+}
+
 .main-header__tab-item{
     float: left;
     padding: 14px 16px;
@@ -101,6 +110,29 @@ body{
 .main-header__nav ul li:last-child {
     display: none;
   }
+
+#btn_logout
+{
+  display: block;
+  width: 60px;
+  height: 60px;
+  margin: 16px 10px 10px 0px;
+  padding: 4px;
+  border: solid transparent 2px;
+  background-color: transparent;
+  align-items: center;
+}
+#btn_logout img {
+  width: 30px;  
+  height: 30px;
+}
+
+#btn_logout:hover {
+  transform: scale(1.2);
+  border-radius: 3px;
+  cursor: pointer;
+}
+
 
 @media screen and (max-width: 920px) {
     .main-header__nav ul li:not(:first-child) {display: none;}

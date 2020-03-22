@@ -1,10 +1,52 @@
 .main {
+    background: linear-gradient(to right, #cac531, #f3f9a7);
     margin: 0;
     background-size: cover;
     display: block;
     align-items: center;
     text-align: center;
     padding: 20px;
+    color: black;
+}
+
+.add_user {
+    display: flex;  
+    flex-wrap: wrap;  
+    text-align: center;
+    padding: 0 350px;
+}
+.add_user h4 {
+    margin: 20px;
+}
+.add_user a {
+    text-decoration: none;  
+    margin: 20px;
+}
+
+.btn {
+    width: 100px;
+    padding: 4px;
+    border: solid var(--text_hover_col) 4px;
+    color: var(--text_hover_col);
+    border-radius: 3px;
+    background-color: transparent;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.btn:hover,.welcome_text.btn:active{
+    border: solid var(--navbar_col) 4px;
+    color: var(--navbar_col);
+    background-color: var(--text_hover_col);
+    cursor: pointer;
+}
+.userImgList{
+
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 5px 0;
+    
 }
 
 table {
@@ -14,7 +56,7 @@ table {
 table tr {
     border-bottom: 1px solid var(--bg-col);
     height: 60px;
-    padding: 10px 10px;
+    padding: 5px 0;
 }
 
 table th {
@@ -33,7 +75,8 @@ table tr:last-child {
 }
 
 td {
-    margin-left: 10px;
-    padding: 0 30px;
+    margin: 0px;
+    padding: 0;
+    width: 180px;
 
 }
