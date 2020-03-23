@@ -34,16 +34,19 @@
           </div>
 
 
+          <div id="shareContainer">
             <form action="/share_memo" method="POST">
-                <input type="hidden" value="<%= memo.id %>" name="memoId">
-                
-                <select id="share_memo" name="share_choices" multiple>
-                    <% for(let user of users) { %>
-                     <option value="<%= user.id %>" data-src="<%= user.img_url %>"><%= user.first_name+' '+user.last_name%> </option>
-                    <% } %>
-                </select>
-                <input type="submit" class="btn" value="Partager"/> 
-            </form>
+              <input type="hidden" value="<%= memo.id %>" name="memoId">
+              
+              <select id="share_memo" name="share_choices" multiple>
+                  <% for(let user of users) { %>
+                   <option value="<%= user.id %>" data-src="<%= user.img_url %>"><%= user.first_name+' '+user.last_name%> </option>
+                  <% } %>
+              </select>
+              <input type="submit" class="btn" value="Partager"/> 
+          </form>
+          </div>
+
         
         
         

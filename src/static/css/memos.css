@@ -128,7 +128,32 @@
     margin: 5px 0;
     
 }
+#shareContainer{
+
+    margin: 10px 0 0 20px;
+}
 .listShare{
     display: flex;
+    color: black;
+}
+.btn{
+    width: 100px;
+    height: 40px;
+    border: solid var(--navbar_col) 2px;
+    color: var(--navbar_col);
+    border-radius: 3px;
+    background-color: transparent;
+    font-family: sans-serif;
+    text-decoration: none;
+    font-size: 18px;
+    margin: 10px 0 10px 5px;
+}
+
+.btn:hover,.btn:active{
+    border: solid var(--navbar_col) 2px;
+    color: var(--navbar_col);
+    border-radius: 3px;
+    background-color: var(--text_hover_col);
+    cursor: pointer;
 }
 
