@@ -8,6 +8,11 @@
 
             <main class="main-container">
 
+                <% if(errMsg) { %>
+                    <div class="errMsg">
+                        <%= errMsg %>
+                    </div>
+                <%}%>
                 <form class="login-form" action="/register" method="POST" enctype="multipart/form-data">
                     <div class="user-img">
                          <img src="img/user_icon.png" alt="Utilisateur">

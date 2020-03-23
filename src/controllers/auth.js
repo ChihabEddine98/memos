@@ -11,9 +11,19 @@ exports.getLogin =((req,res,next)=>{
 })
 
 exports.getRegister =((req,res,next)=>{
+
+    let msg=req.flash('error')
+    if(msg.length >0)
+    {
+      msg=msg[0]
+    }
+    else{
+      msg=null
+    }
     res.render('../views/auth/register.ejs',
     { pageTitle :'Créer un compte ',
-      isAuth: false
+      isAuth: false,
+      errMsg :msg
     })
 })
 
@@ -29,6 +39,7 @@ exports.postRegister =((req,res,next)=>{
     User.findOne({where :{email:email}})
     .then(user => {
         if (user) {
+          req.flash('error',' Cet Email existe Déjà !')
           return res.redirect('/register');
         }
         return bcrypt
@@ -54,7 +65,7 @@ exports.postRegister =((req,res,next)=>{
 
 
 
-    res.render('../views/auth/login.ejs',{ pageTitle :'Connection à Mémos'})
+    //res.render('../views/auth/login.ejs',{ pageTitle :'Connection à Mémos'})
 })
 
 

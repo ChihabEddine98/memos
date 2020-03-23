@@ -115,3 +115,14 @@ b{
     display: inline-block;
 
 }
+
+.errMsg {
+    margin: 20px auto;
+    width: 30%;
+    border: 1px solid black;
+    background-color: rgb(233, 151, 151);
+    text-align: center;
+    padding: 15px;
+    border-radius: 5px;
+    color: black;
+}

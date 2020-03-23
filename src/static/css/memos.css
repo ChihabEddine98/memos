@@ -136,7 +136,7 @@
     display: flex;
     color: black;
 }
-.btn{
+.btnShare{
     width: 100px;
     height: 40px;
     border: solid var(--navbar_col) 2px;
@@ -149,7 +149,7 @@
     margin: 10px 0 10px 5px;
 }
 
-.btn:hover,.btn:active{
+.btnShare:hover,.btnShare:active{
     border: solid var(--navbar_col) 2px;
     color: var(--navbar_col);
     border-radius: 3px;

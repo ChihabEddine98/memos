@@ -26,7 +26,7 @@
              <h1 class="memoTitle">  <%= memo.title %></h1>
            </div>
            <div>
-            <h4 class="memoDate"> Derniere Modification : <%= memo.updatedAt.toISOString().slice(0,10)+' / '+memo.updatedAt.toISOString().slice(11,16) %></h4>
+            <h4 class="memoDate"> Derniere Modification : <%= memo.updatedAt.toISOString().slice(0,10)+' à '+memo.updatedAt.toISOString().slice(11,16) %></h4>
           </div>
 
           <div>
@@ -43,7 +43,7 @@
                    <option value="<%= user.id %>" data-src="<%= user.img_url %>"><%= user.first_name+' '+user.last_name%> </option>
                   <% } %>
               </select>
-              <input type="submit" class="btn" value="Partager"/> 
+              <input type="submit" class="btnShare" value="Partager"/> 
           </form>
           </div>
 

@@ -3,6 +3,7 @@ const express=require('express')
 const bodyParser=require('body-parser')
 const multer=require('multer')
 const session=require('express-session')
+const flash=require('connect-flash')
 
 const db=require('./src/common/database')
 const Memo=require('./src/models/Memo')
@@ -52,6 +53,7 @@ app.use(session(
         }
 ))
 
+app.use(flash())
 
 app.use((req,res,next) =>{
 
