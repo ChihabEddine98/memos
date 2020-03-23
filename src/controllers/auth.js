@@ -34,7 +34,14 @@ exports.getRegister =((req,res,next)=>{
     res.render('../views/auth/register.ejs',
     { pageTitle :'Créer un compte ',
       isAuth: false,
-      errMsg :msg
+      errMsg :msg,
+      oldInput: {
+        nom:"",
+        prenom:"",
+        email : "",
+        password: "",
+        confirmPassword :""
+      }
     })
 })
 
@@ -48,10 +55,17 @@ exports.postRegister =((req,res,next)=>{
     const errors=validationResult(req)
     if( !errors.isEmpty())
     {
-      res.render('../views/auth/register.ejs',
+      return res.render('../views/auth/register.ejs',
       { pageTitle :'Créer un compte ',
         isAuth: false,
-        errMsg :errors.array()[0].msg
+        errMsg :errors.array()[0].msg,
+        oldInput: {
+          nom:nom,
+          prenom:prenom,
+          email : email,
+          password: password,
+          confirmPassword :req.body.confirmPassword
+        }
       })
     }
         bcrypt

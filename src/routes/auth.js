@@ -13,7 +13,7 @@ router.post('/register',[
                     check('email').isEmail()
                     .withMessage("L'email n'est pas valide !")
                     .custom((value,{req})=>{
-                        return User.findOne({email:value})
+                        return User.findOne({where :{email:value}})
                             .then( user=>{
                                 if(user)
                                 {

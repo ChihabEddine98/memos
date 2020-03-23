@@ -18,18 +18,18 @@
                          <img src="img/user_icon.png" alt="Utilisateur">
                     </div>
                     <div class="one-line-form-control">
-                        <input type="text" name="nom" placeholder="Nom">   
-                        <input type="text" name="prenom" placeholder="Prénom">                 
+                        <input type="text" name="nom" value="<%= oldInput.nom %>" placeholder="Nom">   
+                        <input type="text" name="prenom" value="<%= oldInput.prenom %>" placeholder="Prénom">                 
                     </div>
 
                     <div class="form-control">
-                        <input type="email" name="email" placeholder="Email">                 
+                        <input type="email" name="email" value="<%= oldInput.email %>" placeholder="Email">                 
                     </div>
                     <div class="form-control">
-                        <input type="password" name="password" placeholder="Mot De Passe">
+                        <input type="password" name="password" value="<%= oldInput.password %>" placeholder="Mot De Passe">
                     </div>
                     <div class="form-control">
-                        <input type="password" name="confirmPassword" placeholder="Confirmer Le mot de passe">
+                        <input type="password" name="confirmPassword" value="<%= oldInput.confirmPassword %>" placeholder="Confirmer Le mot de passe">
                     </div>
                     <div>
                         <input class="upload-img" type="file" name="userImage" placeholder="image">
