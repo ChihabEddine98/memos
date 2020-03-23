@@ -11,7 +11,7 @@ router.post('/login',  [
       .isEmail()
       .withMessage('Veuillez Entrer un email existant'),
     body('password', 'Entrez un mot de passe valide')
-      .isLength({ min:6  })
+      .isLength({ min:3  })
   ],authController.postLogin)
 
 router.get('/register',authController.getRegister)

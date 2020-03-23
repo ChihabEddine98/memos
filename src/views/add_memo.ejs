@@ -3,7 +3,7 @@
     <%- include('includes/admin_head.ejs')%>
     <link rel="stylesheet" href="/css/add_memo.css">
     </head>
-    <%- include('../includes/admin_nav.ejs')%>
+    <%- include('includes/admin_nav.ejs')%>
     <% } else { %>
     
 <%- include('includes/head.ejs')%>
@@ -20,11 +20,11 @@
                          <img src="/img/add_memo.png" alt="Nouveau Memo">
                     </div>
                     <div class="form-control">
-                        <input type="text" name="title" placeholder="Titre du Mémo">                 
+                        <input type="text" name="title" required="required" placeholder="Titre du Mémo">                 
                     </div>
 
                     <div class="form-control">
-                        <textarea name="description" cols="30" rows="10" placeholder="Détails de votre Mémo..."></textarea>
+                        <textarea name="description" required="required" cols="30" rows="10" placeholder="Détails de votre Mémo..."></textarea>
                     </div>
                     <div>
                         <input class="upload-img" type="file" name="memoImage" placeholder="image">

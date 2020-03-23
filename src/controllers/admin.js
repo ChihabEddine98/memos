@@ -56,7 +56,8 @@ exports.getAddMemo=((req,res,next)=>
                 {
                   pageTitle :'Nouveau Mémo',
                   isAuth: req.session.isLoggedIn ,
-                  user : req.user
+                  user : req.user,
+                  isAdmin :req.session.isAdmin
                 })
 })
 
