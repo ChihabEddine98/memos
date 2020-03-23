@@ -1,5 +1,7 @@
 const User = require('../models/User')
 const bcrypt = require('bcryptjs')
+const { validationResult }=require('express-validator/check')
+
 
 exports.getLogin =((req,res,next)=>{
 
@@ -42,16 +44,17 @@ exports.postRegister =((req,res,next)=>{
     const email=req.body.email
     const password=req.body.password
     const image=req.file
-    const confirm=req.body.confirmPassword
 
-    console.log(image)
-    User.findOne({where :{email:email}})
-    .then(user => {
-        if (user) {
-          req.flash('error',' Cet Email existe Déjà !')
-          return res.redirect('/register');
-        }
-        return bcrypt
+    const errors=validationResult(req)
+    if( !errors.isEmpty())
+    {
+      res.render('../views/auth/register.ejs',
+      { pageTitle :'Créer un compte ',
+        isAuth: false,
+        errMsg :errors.array()[0].msg
+      })
+    }
+        bcrypt
           .hash(password, 12)
           .then(hashedPass => {
             const user = new User({
@@ -62,15 +65,11 @@ exports.postRegister =((req,res,next)=>{
               role : 'USER',
               sexe : 'm'
             });
-            return user.save();
+            return user.save()
           })
           .then(result => {
-            res.redirect('/login');
-          });
-      })
-    .catch((err) => {
-        
-    });
+            res.redirect('/login')
+          })
 
 
 
