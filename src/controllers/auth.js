@@ -13,11 +13,16 @@ exports.getLogin =((req,res,next)=>{
     else{
       msg=null
     }
-    console.log(' hooyoo ',req.session.isLoggedIn)
+    
     res.render('../views/auth/login.ejs',
     { pageTitle :'Connection à Mémos',
       isAuth : false,
-      errMsg: msg
+      errMsg: msg,
+      oldInput :{
+        email:"",
+        password :""
+      },
+      errorsFields :[]
     })
 })
 
@@ -41,7 +46,8 @@ exports.getRegister =((req,res,next)=>{
         email : "",
         password: "",
         confirmPassword :""
-      }
+      },
+      errorsFields : []
     })
 })
 
@@ -65,7 +71,8 @@ exports.postRegister =((req,res,next)=>{
           email : email,
           password: password,
           confirmPassword :req.body.confirmPassword
-        }
+        },
+        errorsFields : errors.array()
       })
     }
         bcrypt
@@ -96,13 +103,37 @@ exports.postLogin = ((req,res,next)=>{
     const email=req.body.email
     const password= req.body.password
 
+    const errors=validationResult(req)
+
+    if(!errors.isEmpty())
+    {
+      return res.render('../views/auth/login.ejs',
+      { pageTitle :'Connection à Mémos',
+        isAuth : false,
+        errMsg: errors.array()[0].msg,
+        oldInput :{
+          email:email,
+          password :password
+        },
+        errorsFields : errors.array()
+      })
+    }
+
     User.findOne({where : { email: email }})
     .then(user => {
-      if (!user) {
-        req.flash('error',' Email Ou Mot de passe invalides')
-        return res.redirect('/login')
+      if(!user)
+      {
+        return res.render('auth/login.ejs',
+        { pageTitle :'Connection à Mémos',
+          isAuth : false,
+          errMsg: 'Email Ou Mot de passe invalides',
+          oldInput :{
+            email:email,
+            password :password
+          },
+          errorsFields : errors.array()
+        })
       }
-      
       bcrypt
         .compare(password, user.password)
         .then(ok => {

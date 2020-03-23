@@ -1,5 +1,5 @@
 body{    
-    background-image: url('../img/bg_login.jpg');
+    background: linear-gradient(to right, #4ac29a, #bdfff3);
     background-size: cover;
 }
 /*  Form De connexion ! */
@@ -119,10 +119,15 @@ b{
 .errMsg {
     margin: 20px auto;
     width: 30%;
-    border: 1px solid black;
-    background-color: rgb(233, 151, 151);
+    border: 1px solid red;
+    background-color: rgb(240, 216, 216);
     text-align: center;
     padding: 15px;
     border-radius: 5px;
-    color: black;
+    color: rgb(255, 41, 41);
+    font-size: 24px;
+}
+
+input.invalidInput{
+    border: 2px solid red;
 }

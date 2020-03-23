@@ -23,13 +23,19 @@
                     </div>
 
                     <div class="form-control">
-                        <input type="email" name="email" value="<%= oldInput.email %>" placeholder="Email">                 
+                        <input type="email" 
+                        class="<%= errorsFields.find(e => e.param === 'email') ? 'invalidInput' : '' %>"
+                         name="email" value="<%= oldInput.email %>" placeholder="Email">                 
                     </div>
                     <div class="form-control">
-                        <input type="password" name="password" value="<%= oldInput.password %>" placeholder="Mot De Passe">
+                        <input type="password"
+                        class="<%= errorsFields.find(e => e.param === 'password') ? 'invalidInput' : '' %>"
+                        name="password" value="<%= oldInput.password %>" placeholder="Mot De Passe">
                     </div>
                     <div class="form-control">
-                        <input type="password" name="confirmPassword" value="<%= oldInput.confirmPassword %>" placeholder="Confirmer Le mot de passe">
+                        <input type="password" 
+                        class="<%= errorsFields.find(e => e.param === 'confirmPassword') ? 'invalidInput' : ''%>"
+                        name="confirmPassword" value="<%= oldInput.confirmPassword %>" placeholder="Confirmer Le mot de passe">
                     </div>
                     <div>
                         <input class="upload-img" type="file" name="userImage" placeholder="image">

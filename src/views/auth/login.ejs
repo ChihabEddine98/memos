@@ -13,17 +13,21 @@
                         <%= errMsg %>
                     </div>
                 <%}%>
-                
+
                 <form class="login-form" action='/login' method="POST">
                     <div class="user-img">
                          <img src="img/user_icon.png" alt="Utilisateur">
                     </div>
                     <div class="form-control">
-                        <input type="email" name="email" placeholder="Email">
+                        <input type="email" 
+                        class="<%= errorsFields.find(e => e.param === 'email') ? 'invalidInput' : '' %>"
+                        value="<%= oldInput.email %>" name="email" placeholder="Email">
                         
                     </div>
                     <div class="form-control">
-                        <input type="password" name="password" placeholder="Mot De Passe">
+                        <input type="password" 
+                        class="<%= errorsFields.find(e => e.param === 'password') ? 'invalidInput' : '' %>"
+                        value="<%= oldInput.password %>" name="password" placeholder="Mot De Passe">
                     </div>
                     <!-- <div class="form-control remember" >
                         <input type="checkbox" name="remember" >

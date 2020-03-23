@@ -6,7 +6,13 @@ const User=require('../models/User')
 
 
 router.get('/login',authController.getLogin)
-router.post('/login',authController.postLogin)
+router.post('/login',  [
+    body('email')
+      .isEmail()
+      .withMessage('Veuillez Entrer un email existant'),
+    body('password', 'Entrez un mot de passe valide')
+      .isLength({ min:6  })
+  ],authController.postLogin)
 
 router.get('/register',authController.getRegister)
 router.post('/register',[
