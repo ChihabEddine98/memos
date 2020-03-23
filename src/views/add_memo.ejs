@@ -1,16 +1,23 @@
+
+<% if(isAdmin) { %>
+    <%- include('includes/admin_head.ejs')%>
+    <link rel="stylesheet" href="/css/add_memo.css">
+    </head>
+    <%- include('../includes/admin_nav.ejs')%>
+    <% } else { %>
+    
 <%- include('includes/head.ejs')%>
-<link rel="stylesheet" href="css/add_memo.css">
+<link rel="stylesheet" href="/css/add_memo.css">
 </head>
 <%- include('includes/nav.ejs')%>
-
-
+<% } %>
         <div class="main">
 
             <main class="main-container">
 
                 <form class="login-form" action="/add_memo" method="POST" enctype="multipart/form-data">
                     <div class="user-img">
-                         <img src="img/add_memo.png" alt="Nouveau Memo">
+                         <img src="/img/add_memo.png" alt="Nouveau Memo">
                     </div>
                     <div class="form-control">
                         <input type="text" name="title" placeholder="Titre du Mémo">                 

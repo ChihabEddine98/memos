@@ -1,13 +1,24 @@
-<%- include('includes/head.ejs')%>
-<link rel="stylesheet" href="/css/memos.css">
-</head>
-<%- include('includes/nav.ejs')%>
+<% if(isAdmin) { %>
+  <%- include('includes/admin_head.ejs')%>
+  <link rel="stylesheet" href="/css/memos.css">
+  </head>
+  <%- include('includes/admin_nav.ejs')%>
+  <% } else { %>
+  
+  <%- include('includes/head.ejs')%>
+  <link rel="stylesheet" href="/css/memos.css">
+  </head>
+  <%- include('includes/nav.ejs')%>
+<% } %>
 
 <div class="main">
     <main class="main-container"> 
         
            <div>
              <img class="memoImg" src="/img/memos_bg.jpg" alt="<%= memo.title%> ">
+             <% if(memo.owner !== user.id) { %>
+              <h2 class="memo-title"> Partagé ! </h2>
+            <% } %>
            </div>
            <div>
              <h1 class="memoTitle">  <%= memo.title %></h1>

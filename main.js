@@ -96,7 +96,7 @@ db.sync()
 .then(result => {
     console.log('Connection Réussie à La BDD !')
     app.listen(PORT)
-    console.log(`App is listening on port ${PORT} !`)
+    console.log(`localhost:${PORT}`)
 
 
 })

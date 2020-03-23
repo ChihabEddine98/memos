@@ -37,13 +37,14 @@ exports.getMemos=((req,res,next)=>
     Memo.findAll()
             .then(memos =>
                 {
-                    res.render('../views/admin/memos.ejs',
+                    res.render('../views/memos.ejs',
                     { pageTitle :'Mémos !',
                       memos:memos,
                       isAuth: req.session.isLoggedIn,
                       canShare:false,
                       userId:req.user.id,
-                      user : req.user
+                      user : req.user,
+                      isAdmin :req.session.isAdmin
                     })
                 })
             .catch( err => console.log(err) )
@@ -52,7 +53,7 @@ exports.getMemos=((req,res,next)=>
 
 exports.getAddMemo=((req,res,next)=>
 {
-    res.render('../views/admin/add_memo.ejs',
+    res.render('../views/add_memo.ejs',
                 {
                   pageTitle :'Nouveau Mémo',
                   isAuth: req.session.isLoggedIn ,
@@ -84,7 +85,7 @@ exports.getMemo =((req,res,next)=>
                       }
                     }
                   }).then( users =>{
-                    res.render('../views/admin/memo_detail.ejs',
+                    res.render('../views/memo_detail.ejs',
                     {   pageTitle :'Mémos Detail !',
                         memo :memo,
                         isAuth: req.session.isLoggedIn,
