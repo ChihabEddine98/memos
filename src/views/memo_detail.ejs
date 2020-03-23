@@ -7,6 +7,8 @@
   
   <%- include('includes/head.ejs')%>
   <link rel="stylesheet" href="/css/memos.css">
+  <link href="https://unpkg.com/mobius1-selectr@latest/dist/selectr.min.css" rel="stylesheet" type="text/css">
+  <script src="https://unpkg.com/mobius1-selectr@latest/dist/selectr.min.js" type="text/javascript"></script>
   </head>
   <%- include('includes/nav.ejs')%>
 <% } %>
@@ -34,10 +36,10 @@
 
             <form action="/share_memo" method="POST">
                 <input type="hidden" value="<%= memo.id %>" name="memoId">
+                
                 <select id="share_memo" name="share_choices" multiple>
-                    <option id="0"> Choissisez les noms </option>
                     <% for(let user of users) { %>
-                     <option value="<%= user.id %>"><%= user.first_name+' '+user.last_name%> </option>
+                     <option value="<%= user.id %>" data-src="<%= user.img_url %>"><%= user.first_name+' '+user.last_name%> </option>
                     <% } %>
                 </select>
                 <input type="submit" class="btn" value="Partager"/> 
@@ -48,6 +50,38 @@
     </main>
 </div>
 
+  <script>
+
+    function listUsersRow(option) {
+      var template = [
+        "<div class='listShare'><img class='userImgList' src='", option.dataset.src, "'/><span>",
+          option.textContent,
+        "</span></div>"
+      ];
+      return template.join('');
+      }
+
+    var shareSelect = new Selectr(document.getElementById('share_memo'),{
+
+
+      defaultSelected: true,
+      renderOption: listUsersRow,
+      width: "auto",
+      disabled: false,
+      searchable: true,
+      clearable: false,
+      sortSelected: false,
+      allowDeselect: false,
+      closeOnScroll: false,
+      nativeDropdown: false,
+      nativeKeyboard: false,
+      placeholder: "Choissisez Avec Qui ",
+      taggable: false,
+      tagPlaceholder: "Enterez un tag..."
+  
+  });
+
+  </script>
 
 </body>
 </html>

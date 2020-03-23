@@ -42,7 +42,6 @@ exports.getMemos=((req,res,next)=>
                       memos:memos,
                       isAuth: req.session.isLoggedIn,
                       canShare:false,
-                      userId:req.user.id,
                       user : req.user,
                       isAdmin :req.session.isAdmin
                     })
