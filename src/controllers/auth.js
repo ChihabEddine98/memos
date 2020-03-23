@@ -3,10 +3,19 @@ const bcrypt = require('bcryptjs')
 
 exports.getLogin =((req,res,next)=>{
 
+    let msg=req.flash('error')
+    if(msg.length >0)
+    {
+      msg=msg[0]
+    }
+    else{
+      msg=null
+    }
     console.log(' hooyoo ',req.session.isLoggedIn)
     res.render('../views/auth/login.ejs',
     { pageTitle :'Connection à Mémos',
-      isAuth : false
+      isAuth : false,
+      errMsg: msg
     })
 })
 
@@ -77,6 +86,7 @@ exports.postLogin = ((req,res,next)=>{
     User.findOne({where : { email: email }})
     .then(user => {
       if (!user) {
+        req.flash('error',' Email Ou Mot de passe invalides')
         return res.redirect('/login')
       }
       
@@ -104,10 +114,11 @@ exports.postLogin = ((req,res,next)=>{
             }
 
           }
+          req.flash('error',' Email Ou Mot de passe invalides')
           res.redirect('/login')
         })
         .catch(err => {
-          console.log(err)
+          req.flash('error',' Email Ou Mot de passe invalides')
           res.redirect('/login')
         })
     })
