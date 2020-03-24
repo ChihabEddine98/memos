@@ -41,7 +41,7 @@ $(document).ready(function(){
     $('#getNbSharesBtn').click(()=>{
 
         $.ajax({
-            url: "/admin/stats_data",  
+            url: "/admin/stats_shared_data",  
             method: 'GET',
             success: function(data){
                 var cts = $('#users_sharing')

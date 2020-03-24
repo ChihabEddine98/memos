@@ -123,11 +123,12 @@ exports.postAddMemo =((req,res,next)=>
                 description:description,
                 imgUrl:imgUrl,
                 owner:req.user.id,
-                userId:req.user.id
+                userId:req.user.id,
                     })
             .then(result => {
                 if( req.session.isAdmin)
                 {
+                   result.isShared=false
                    return res.redirect('/admin/all_memos')
                 }
                 else
@@ -152,7 +153,9 @@ exports.postShareMemo = ((req,res,next)=>{
 
     const memoId=req.body.memoId
     const selected_users=req.body.share_choices
-
+    const User_Memo=require('../models/User_Memo')
+    const db =require('../common/database')
+    
     Memo.findByPk(memoId)
         .then(memo =>{
             
@@ -160,21 +163,40 @@ exports.postShareMemo = ((req,res,next)=>{
                 .then( users => {
                     for(let user of users)
                     {
-                        user.addMemo(memo)
-                    }
-
-                    if( req.session.isAdmin)
-                    {
-                       return res.redirect('/admin')
-                    }
-                    else
-                    {
-                       return res.redirect('/mes_memos')
+                        user.addMemo(memo,{isShared:1})
                     }
                 })
-                .catch(err =>console.log(err))
+        }).then(()=>{
+            Memo.findByPk(memoId)
+            .then(memo =>{
+  
+              User.findAll({where :{id:selected_users }}) 
+                  .then( users =>{
+                  for(let user of users){
+                      let sql='UPDATE user_memos SET isShared=1 WHERE memoId='+memo.id+' AND userId='+user.id+';'
+                      db.query(sql)
+                              .then(result=>{
+                                      
+                              })
+                  }
+      
+                  if( req.session.isAdmin)
+                  {
+                     return res.redirect('/admin')
+                  }
+                  else
+                  {
+                     return res.redirect('/mes_memos')
+                  }
+              })
+            })
+    
         })
         .catch(err =>console.log(err))
+
+        
+
+        
 
 })
 

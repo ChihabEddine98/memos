@@ -11,6 +11,7 @@ router.get('/stats',adminController.getStats)
 router.get('/memos/:memoId',adminController.getMemo)
 
 router.get('/stats_data',adminController.getStatsData)
+router.get('/stats_shared_data',adminController.getSharedStatsData)
 
 
 

@@ -61,12 +61,22 @@ exports.getAddMemo=((req,res,next)=>
                 })
 })
 
+exports.getSharedStatsData =((req,res,next)=> {
+  const db=require('../common/database')
+  const sql=''
+
+  db.query(sql).then(result =>{
+
+
+  })
+
+})
 exports.getStatsData =((req,res,next)=> {
  
  
   const db=require('../common/database')
 
-  const sql='SELECT users.first_name,users.last_name,count(memoId) AS nb_memos FROM user_memo JOIN users ON (users.id=user_memo.userId) GROUP BY userId;'
+  const sql='SELECT users.first_name,users.last_name,count(memoId) AS nb_memos FROM user_memos JOIN users ON (users.id=user_memos.userId) GROUP BY userId;'
 
   db.query(sql).then(result =>{
 

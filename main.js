@@ -4,12 +4,14 @@ const bodyParser=require('body-parser')
 const multer=require('multer')
 const session=require('express-session')
 const flash=require('connect-flash')
+const Sqlz=require('sequelize')
 
 
 
 const db=require('./src/common/database')
 const Memo=require('./src/models/Memo')
 const User=require('./src/models/User')
+const User_Memo=require('./src/models/User_Memo')
 
 const adminRoutes=require('./src/routes/admin')
 const memoRoutes=require('./src/routes/memo')
@@ -86,9 +88,8 @@ app.get('/', (req, res,next)=>{
 })
 
 
-
-User.belongsToMany(Memo, { through: 'User_Memo' ,onDelete: 'cascade', });
-Memo.belongsToMany(User, { through: 'User_Memo' ,onDelete: 'cascade', });
+User.belongsToMany(Memo, { through: User_Memo ,onDelete: 'cascade', });
+Memo.belongsToMany(User, { through: User_Memo ,onDelete: 'cascade', });
 
 //Memo.belongsTo(User,{constrains : true,onDelete :'CASCADE'})
 //User.hasMany(Memo)
