@@ -17,7 +17,7 @@ body{
 .register-form{
     margin: auto;
     width: 30%;
-    height: 600px;
+    height: 670px;
     padding: 20px;
     align-items: center;
     display: block;
@@ -122,7 +122,51 @@ b{
     background-color: var(--overlay_fg_col);
     font-size: 22px; 
     display: inline-block;
+}
 
+.genderInputContainer {
+    display: inline-flex;
+    width: 65%;
+    padding: 10px;
+    margin: 0 auto 10px auto;
+    font-size: 32px;
+    color: rgb(20, 20, 20);
+
+    border-radius: 12px;
+    align-items: center;
+}
+
+#maleLabel:hover {
+    cursor: pointer;
+    border: rgb(61, 80, 247) 3px solid;
+
+}
+#femaleLabel:hover {
+    cursor: pointer;
+    border:  rgb(238, 47, 222) 3px solid;
+
+}
+
+#male:checked + label {
+    border: rgb(61, 80, 247) 3px solid;
+}
+#female:checked + label {
+    border: rgb(238, 47, 222) 3px solid;
+}
+
+
+.genderInputContainer label{
+    margin: 0 60px;
+    padding: 2px 7px;
+    width: 40px;
+    height: 40px;
+}
+.genderInputContainer input{
+    width: 20px;
+    display: none;
+    height: 20px;
+    background-color: #000;
+    border: #000 2px solid;
 }
 
 .errMsg {

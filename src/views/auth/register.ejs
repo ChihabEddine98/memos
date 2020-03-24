@@ -17,6 +17,14 @@
                     <div class="user-img">
                          <img src="img/user_icon.png" alt="Utilisateur">
                     </div>
+
+                    <div class="genderInputContainer">
+                        <input type="radio" id="male" name="gender" value="m">
+                        <label for="male" id="maleLabel"><i class="fa fa-mars" style="color: rgb(19, 86, 231);" aria-hidden="true"></i></label><br>
+                        <input type="radio" id="female" name="gender"  value="f">
+                        <label for="female" id="femaleLabel"><i class="fa fa-venus" style="color: rgb(219, 10, 209);" aria-hidden="true"></i></label><br>
+                    </div>
+
                     <div class="one-line-form-control">
                         <input type="text" name="nom" value="<%= oldInput.nom %>" placeholder="Nom">   
                         <input type="text" name="prenom" value="<%= oldInput.prenom %>" placeholder="Prénom">                 
@@ -55,8 +63,6 @@
             </main>
 
         </div>
-
-
 
     
 </body>

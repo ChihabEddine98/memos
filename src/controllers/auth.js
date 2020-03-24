@@ -57,6 +57,8 @@ exports.postRegister =((req,res,next)=>{
     const email=req.body.email
     const password=req.body.password
     const image=req.file
+    const sexe=req.body.gender
+
 
     const errors=validationResult(req)
     if( !errors.isEmpty())
@@ -88,7 +90,7 @@ exports.postRegister =((req,res,next)=>{
               last_name:nom,
               img_url :imgUrl,
               role : 'USER',
-              sexe : 'm'
+              sexe : sexe
             });
             return user.save()
           })

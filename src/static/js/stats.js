@@ -18,8 +18,8 @@ $(document).ready(function(){
                             label: 'Nombre De Mémos',
                             data: data['values'],
                             borderWidth: 1,
-                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                            borderColor :'rgba(255, 99, 132, 0.2)'
+                            backgroundColor: '#ffcce7',
+                            borderColor :'#ff66b8'
                         }]
                     },
                   options: {
@@ -56,8 +56,8 @@ $(document).ready(function(){
                             label: 'Nombre De Partage',
                             data: data['values'],
                             borderWidth: 1,
-                            backgroundColor: 'rgba(0, 99, 132, 0.2)',
-                            borderColor :'rgba(255, 99, 132, 0.2)'
+                            backgroundColor: '#89f6fa',
+                            borderColor :'#00BFFF'
                         }]
                     },
                   options: {
@@ -93,8 +93,8 @@ $(document).ready(function(){
                             label: 'Nombre De Partage Pour Chaque Mémo',
                             data: data['values'],
                             borderWidth: 1,
-                            backgroundColor: 'rgba(12, 56, 232, 0.2)',
-                            borderColor :'rgba(255, 99, 132, 0.2)'
+                            backgroundColor: '#78f0ba',
+                            borderColor :'#2ec782'
                         }]
                     },
                   options: {

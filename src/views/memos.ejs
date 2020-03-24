@@ -33,19 +33,20 @@
                                 Details<!-- <img src="/img/add_icon.png" class="detailImg" alt=""> -->
                             </a>
                         
-                            <a type="submit" href="/edit_memo/<%= memo.id %>" class="btn">
-                                Modifier
-                            </a>
-        
+                            <% if(memo.owner === user.id) { %>
+                                <a type="submit" href="/edit_memo/<%= memo.id %>" class="btn">
+                                    Modifier
+                                </a>
 
-                            <form action="/delete_memo" method="POST">
-                                <input type="hidden" value="<%= memo.id %>" name="memoId">
-                                    
-                                <button type="submit" class="btn">
-                                    Supprimer
-                                    <!-- <img src="/img/delete.png" class="deleteImg" alt="" > -->
-                                </button>
-                            </form> 
+                                <form action="/delete_memo" method="POST">
+                                    <input type="hidden" value="<%= memo.id %>" name="memoId">
+                                        
+                                    <button type="submit" class="btn">
+                                        Supprimer
+                                        <!-- <img src="/img/delete.png" class="deleteImg" alt="" > -->
+                                    </button>
+                                </form> 
+                              <% } %>
 
                         </div>
 

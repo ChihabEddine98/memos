@@ -23,7 +23,7 @@
 .main-container .memo{
     margin: 30px;
     padding: 0px 0px;
-    width: 320px;
+    width: 20%;
     height: 280px;
     border: 2px var(--navbar_col) solid;
     background-color: var(--overlay_bg_col);
@@ -54,7 +54,8 @@
     margin: 5px;
 }
 .actions {
-    display: flex;
+    display: inline-flex;
+    align-items: center;
 }
 .detailImg{
 
@@ -83,7 +84,7 @@
     font-family: sans-serif;
     text-decoration: none;
     font-size: 18px;
-    margin: 10px 0 10px 5px;
+    margin: 10px 0 20px 5px;
 }
 
 .memo .btn:hover,.memo .btn:active{
@@ -157,16 +158,18 @@ select[multiple]{
 }
 .userImgList{
 
-    width: 40px;
-    height: 40px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
-    margin: 5px 0;
+    margin: 0 7px;
     
 }
 
 .listShare{
-    display: flex;
+    display: inline-flex;
+    align-items: left;
     color: black;
+    padding: 10px;
 }
 .btnShare{
     width: 100px;
