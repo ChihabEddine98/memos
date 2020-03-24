@@ -61,13 +61,60 @@ exports.getAddMemo=((req,res,next)=>
                 })
 })
 
+exports.getStatsData =((req,res,next)=> {
+ 
+ 
+  const db=require('../common/database')
+
+  const sql='SELECT users.first_name,users.last_name,count(memoId) AS nb_memos FROM user_memo JOIN users ON (users.id=user_memo.userId) GROUP BY userId;'
+
+  db.query(sql).then(result =>{
+
+    var labels=[]
+    var values=[]
+    for(let user of result[0])
+    {
+      labels.push(user['first_name']+' '+user['last_name'])
+      values.push(user['nb_memos'])
+    }
+
+    var data ={
+      labels:labels,
+      values :values
+    }
+    res.send(data)
+  })
+
+})
 exports.getStats =((req,res,next)=> {
 
-    res.render('../views/admin/index.ejs',
+
+  data= [{
+      'x': 0.2,
+      'y': 0.4
+  }, {
+      'x': 0.5,
+      'y': -0.3
+  }]
+
+  options= {
+    scales: {
+        yAxes: [{
+            stacked: true
+        }]
+    }
+   }
+
+    res.render('admin/stats.ejs',
     {
        pageTitle :' Admin Panel ' ,
        isAuth :req.session.isLoggedIn,
-       user : req.user
+       user : req.user,
+       data : data,
+       options :options,
+      
+
+
     })
 
 })

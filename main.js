@@ -5,6 +5,8 @@ const multer=require('multer')
 const session=require('express-session')
 const flash=require('connect-flash')
 
+
+
 const db=require('./src/common/database')
 const Memo=require('./src/models/Memo')
 const User=require('./src/models/User')
@@ -85,7 +87,6 @@ app.get('/', (req, res,next)=>{
 
 
 
-
 User.belongsToMany(Memo, { through: 'User_Memo' ,onDelete: 'cascade', });
 Memo.belongsToMany(User, { through: 'User_Memo' ,onDelete: 'cascade', });
 
@@ -99,6 +100,7 @@ db.sync()
     console.log('Connection Réussie à La BDD !')
     app.listen(PORT)
     console.log(`localhost:${PORT}`)
+
 
 
 })

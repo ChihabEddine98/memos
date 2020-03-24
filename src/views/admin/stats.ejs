@@ -1,0 +1,66 @@
+<%- include('../includes/admin_head.ejs')%>
+<link rel="stylesheet" href="/css/welcome.css">
+</head>
+<%- include('../includes/admin_nav.ejs')%>
+
+<div class="main">
+
+    <canvas id="myChart" width="500" height="500"></canvas>
+    <button id="getStats" style="display: none;"> Get stats</button>
+
+</div>
+    
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>
+<script>
+    
+    $(document).ready(function(){
+
+        $('#getStats').click(()=>{
+            $.ajax({
+                url: "/admin/stats_data",  
+                method: 'GET',
+                success: function(data){
+                    var ctx = $('#myChart')
+                    
+                    console.log(data)
+
+                    var myLineChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: data['labels'],
+                            datasets: [{
+                                label: 'Nombre De Mémos',
+                                data: data['values'],
+                                borderWidth: 1,
+                                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                                borderColor :'rgba(255, 99, 132, 0.2)'
+                            }]
+                        },
+                      options: {
+                        scales: {
+                            yAxes: [{
+                                stacked: true
+                            }]
+                        },
+                        responsive: false
+                        
+                    }
+                    })
+    
+                }
+            } )
+        })
+
+        $('#getStats').trigger('click');
+
+      });
+
+
+
+
+
+
+</script>
+</body>
+</html>
