@@ -131,48 +131,47 @@ exports.getEditMemo=((req,res,next)=>
 })
 
 
-exports.postAddMemo =((req,res,next)=>
+exports.postEditMemo =((req,res,next)=>
 {
     const title = req.body.title
     const description= req.body.description
     const image =req.file
-    const imgUrl = image.path.substring(19)
+    let imgUrl =null
+    if(image)
+    {
+        imgUrl = image.path.substring(19)
+    }
+    
 
 
-      User.findByPk(req.user.id)
-          .then( user =>{
+      Memo.findByPk(req.body.memoId)
+          .then(memo =>{
             
-            user.createMemo({
-                title:title,
-                description:description,
-                imgUrl:imgUrl,
-                owner:req.user.id,
-                userId:req.user.id,
-                    })
-            .then(result => {
-                if( req.session.isAdmin)
-                {
-                   result.isShared=false
-                   return res.redirect('/admin/all_memos')
-                }
-                else
-                {
-                   return res.redirect('/all_memos')
-                }
-                
-            })
-            .catch( err=> console.log(err))
+            memo.title=title
+            memo.description=description
+            if(imgUrl)
+            {
+                memo.imgUrl=imgUrl
+            }
+
+            memo.save()
+            if( req.session.isAdmin)
+            {
+               return res.redirect('/admin/all_memos')
+            }
+            else
+            {
+               return res.redirect('/all_memos')
+            }
+
           })
-    .catch(err => {
-      console.log(err)
-    })
 
     // res.render('../views/add_memo.ejs',
     //             {pageTitle :'Nouveau Mémo',
     //              isAuth : req.session.isLoggedIn})
 })
 
-exports.postEditMemo =((req,res,next)=>
+exports.postAddMemo =((req,res,next)=>
 {
     const title = req.body.title
     const description= req.body.description
