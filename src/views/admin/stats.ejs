@@ -3,64 +3,19 @@
 </head>
 <%- include('../includes/admin_nav.ejs')%>
 
-<div class="main">
+<div class="main" style="display: flex;flex-wrap:wrap;">
 
-    <canvas id="myChart" width="500" height="500"></canvas>
-    <button id="getStats" style="display: none;"> Get stats</button>
+    <canvas id="users_nb_memo" style="margin:10px 50px;" width="500" height="500"></canvas>
+    <canvas id="users_sharing" style="margin:10px 120px;" width="500" height="500"></canvas>
+    <button id="getNbMemosBtn" style="display: none;"> Get stats</button>
+    <button id="getNbSharesBtn" style="display: none;"> Get shared</button>
 
 </div>
     
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>
-<script>
-    
-    $(document).ready(function(){
-
-        $('#getStats').click(()=>{
-            $.ajax({
-                url: "/admin/stats_data",  
-                method: 'GET',
-                success: function(data){
-                    var ctx = $('#myChart')
-                    
-                    console.log(data)
-
-                    var myLineChart = new Chart(ctx, {
-                        type: 'bar',
-                        data: {
-                            labels: data['labels'],
-                            datasets: [{
-                                label: 'Nombre De Mémos',
-                                data: data['values'],
-                                borderWidth: 1,
-                                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                                borderColor :'rgba(255, 99, 132, 0.2)'
-                            }]
-                        },
-                      options: {
-                        scales: {
-                            yAxes: [{
-                                stacked: true
-                            }]
-                        },
-                        responsive: false
-                        
-                    }
-                    })
-    
-                }
-            } )
-        })
-
-        $('#getStats').trigger('click');
-
-      });
+<script src="/js/stats.js"></script>
 
 
-
-
-
-
-</script>
 </body>
 </html>
