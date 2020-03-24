@@ -1,0 +1,50 @@
+
+<% if(isAdmin) { %>
+    <%- include('includes/admin_head.ejs')%>
+    <link rel="stylesheet" href="/css/add_memo.css">
+    </head>
+    <%- include('includes/admin_nav.ejs')%>
+    <% } else { %>
+    
+<%- include('includes/head.ejs')%>
+<link rel="stylesheet" href="/css/add_memo.css">
+</head>
+<%- include('includes/nav.ejs')%>
+<% } %>
+        <div class="main">
+
+            <main class="main-container">
+
+                <form class="login-form" action="/edit_memo" method="POST" enctype="multipart/form-data">
+                    <div class="user-img">
+                         <img src="/img/new_memo.png" alt="Nouveau Memo">
+                    </div>
+                    <div class="form-control">
+                        <input type="text" name="title" value="<%= memo.title %>" required="required" >                 
+                    </div>
+
+                    <div class="form-control">
+                        <textarea name="description" required="required"  cols="30" rows="10"> <%= memo.description %> </textarea>
+                    </div>
+                    <div id="imageUploader">
+                        <input accept = "image/*" id="imageUpload" 
+                        class="upload-img" type="file" required="required"
+                         name="image" placeholder="image">
+                        <label for="imageUpload" />Choissisez une image </label>
+                    </div>
+
+                    <div class="form-control">
+                        <input type="submit" class="btn" value="Valider">
+                    </div>
+                </form>
+
+
+            </main>
+
+        </div>
+
+
+
+    
+</body>
+</html>
