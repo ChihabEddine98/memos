@@ -17,7 +17,7 @@
 
                 <form class="login-form" action="/add_memo" method="POST" enctype="multipart/form-data">
                     <div class="user-img">
-                         <img src="/img/add_memo.png" alt="Nouveau Memo">
+                         <img src="/img/new_memo.png" alt="Nouveau Memo">
                     </div>
                     <div class="form-control">
                         <input type="text" name="title" required="required" placeholder="Titre du Mémo">                 
@@ -26,8 +26,11 @@
                     <div class="form-control">
                         <textarea name="description" required="required" cols="30" rows="10" placeholder="Détails de votre Mémo..."></textarea>
                     </div>
-                    <div>
-                        <input class="upload-img" type="file" name="image" placeholder="image">
+                    <div id="imageUploader">
+                        <input accept = "image/*" id="imageUpload" 
+                        class="upload-img" type="file" required="required"
+                         name="image" placeholder="image">
+                        <label for="imageUpload" />Choissisez une image </label>
                     </div>
 
                     <div class="form-control">

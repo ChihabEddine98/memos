@@ -14,7 +14,7 @@ body{
 
 }
 
-.login-form{
+.register-form{
     margin: auto;
     width: 30%;
     height: 600px;
@@ -24,11 +24,20 @@ body{
     background-color: var(--overlay_bg_col);
     border-radius: 30px;
 }
-.login-form img{
-
+.login-form{
+    margin: auto;
+    width: 30%;
+    height: 500px;
+    padding: 20px;
+    align-items: center;
+    display: block;
+    background-color: var(--overlay_bg_col);
+    border-radius: 30px;
+}
+img{
     height: 200px;
     width: 200px;
-
+    
     
 }
 i{
@@ -39,7 +48,7 @@ i{
 .form-control input{
 
     width: 70%;
-    margin: 0 0 20px 0;
+    margin: 0 0 10px 0;
     height: 40px;
     text-align: center;
     border: solid var(--text_col);
@@ -104,7 +113,7 @@ b{
 .one-line-form-control input{
 
     width: 33%;
-    margin: 0 0 20px 0;
+    margin: 0 0 10px 0;
     height: 40px;
     text-align: center;
     border: solid var(--text_col);
@@ -131,3 +140,36 @@ b{
 input.invalidInput{
     border: 2px solid red;
 }
+
+[type="file"] {
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute !important;
+    white-space: nowrap;
+    width: 1px;
+  }
+   
+  [type="file"] + label {
+    width: 66%;
+    height: 25px;
+    background-color: #000;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 22px;
+    display: inline-block;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+    
+  [type="file"]:focus + label,
+  [type="file"] + label:hover {
+      background-color: #3f42408e;
+  }
+    
+  [type="file"]:focus + label {
+    outline: 1px dotted #000;
+  }

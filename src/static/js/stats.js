@@ -75,7 +75,45 @@ $(document).ready(function(){
         } )
     })
 
+    $('#getNbSharesMemoBtn').click(()=>{
+
+        $.ajax({
+            url: "/admin/stats_shared_memo_data",  
+            method: 'GET',
+            success: function(data){
+                var cts = $('#users_sharing_memo')
+                
+                console.log(data)
+
+                var memo_nb_shares_chart = new Chart(cts, {
+                    type: 'line',
+                    data: {
+                        labels: data['labels'],
+                        datasets: [{
+                            label: 'Nombre De Partage Pour Chaque Mémo',
+                            data: data['values'],
+                            borderWidth: 1,
+                            backgroundColor: 'rgba(12, 56, 232, 0.2)',
+                            borderColor :'rgba(255, 99, 132, 0.2)'
+                        }]
+                    },
+                  options: {
+                    scales: {
+                        yAxes: [{
+                            stacked: true
+                        }]
+                    },
+                    responsive: false
+                    
+                }
+                })
+
+            }
+        } )
+    })
+
     $('#getNbMemosBtn').trigger('click');
     $('#getNbSharesBtn').trigger('click');
+    $('#getNbSharesMemoBtn').trigger('click');
 
   });

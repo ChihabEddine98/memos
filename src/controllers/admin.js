@@ -1,6 +1,8 @@
 const Memo=require('../models/Memo')
 const User=require('../models/User')
 const Sqlz=require('sequelize')
+const db=require('../common/database')
+
 
 exports.getIndex =((req,res,next)=> {
 
@@ -61,18 +63,61 @@ exports.getAddMemo=((req,res,next)=>
                 })
 })
 
+
+exports.getSharedMemosData =((req,res,next)=>{
+  let sql='SELECT memos.title as memo_title,sum(case isShared when 1 then 1 else 0 end) as value from user_memos JOIN memos on (memoId=memos.id) GROUP BY user_memos.memoId;'
+  let label='memo_title'
+
+  db.query(sql).then(result =>{
+
+    var labels=[]
+    var values=[]
+    for(let val of result[0])
+    {
+        labels.push(val[label])
+        values.push(val['value'])
+    }
+
+    var data ={
+      labels:labels,
+      values :values
+    }
+    res.send(data)
+})
+  
+
+})
+
 exports.getSharedStatsData =((req,res,next)=> {
-  const db=require('../common/database')
-  const sql='select users.first_name,users.last_name,sum(case isShared when 1 then 1 else 0 end) as nb_shares FROM user_memos JOIN users ON (users.id=user_memos.userId) GROUP BY userId'
-
-
+  let sql='select users.first_name,users.last_name,sum(case isShared when 1 then 1 else 0 end) as nb_shares FROM user_memos JOIN users ON (users.id=user_memos.userId) GROUP BY userId'
+  sql =`CREATE TEMPORARY TABLE IF NOT EXISTS sharers SELECT memos.owner FROMmemos JOIN user_memos ON (memos.id = user_memos.memoId);
+  CREATE TEMPORARY TABLE IF NOT EXISTS shared
+  SELECT memos.owner as id, sum(case isShared when 1 then 1 else 0 end) as nb_shares FROM
+  memos   JOIN user_memos ON (memos.id = user_memos.memoId)
+  GROUP BY memos.id;
+  CREATE TEMPORARY TABLE IF NOT EXISTS non_shared 
+  SELECT users.id as id,0 as nb_shares
+  FROM
+  users
+  WHERE users.id NOT IN (SELECT * from sharers )
+  GROUP BY users.id;
+  SELECT users.first_name, users.last_name,count(*) as nb_shares FROM shared
+  JOIN users ON (shared.id = users.id)
+  GROUP BY users.id
+  UNION 
+  SELECT users.first_name, users.last_name,0 as nb_shares FROM non_shared
+  JOIN users ON (non_shared.id = users.id)
+  GROUP BY users.id;
+  `
+  sql ='SELECT users.first_name, users.last_name,sum(case isShared when 1 then 1 else 0 end) as value FROM user_memos JOIN memos ON (user_memos.memoId = memos.id)JOIN users ON (users.id=memos.owner)GROUP BY users.id'  
   db.query(sql).then(result =>{
+
     var labels=[]
     var values=[]
-    for(let user of result[0])
+    for(let val of result[0])
     {
-      labels.push(user['first_name']+' '+user['last_name'])
-      values.push(user['nb_shares'])
+        labels.push(val['first_name']+' '+val['last_name'])
+        values.push(val['value'])
     }
 
     var data ={
@@ -80,25 +125,20 @@ exports.getSharedStatsData =((req,res,next)=> {
       values :values
     }
     res.send(data)
-
-  })
+})
 
 })
+
 exports.getStatsData =((req,res,next)=> {
- 
- 
-  const db=require('../common/database')
-
-  const sql='SELECT users.first_name,users.last_name,count(memoId) AS nb_memos FROM user_memos JOIN users ON (users.id=user_memos.userId) GROUP BY userId;'
-
+  const sql='SELECT users.first_name,users.last_name,count(memoId) AS value FROM user_memos JOIN users ON (users.id=user_memos.userId) GROUP BY userId;'
   db.query(sql).then(result =>{
 
     var labels=[]
     var values=[]
-    for(let user of result[0])
+    for(let val of result[0])
     {
-      labels.push(user['first_name']+' '+user['last_name'])
-      values.push(user['nb_memos'])
+        labels.push(val['first_name']+' '+val['last_name'])
+        values.push(val['value'])
     }
 
     var data ={
@@ -106,38 +146,17 @@ exports.getStatsData =((req,res,next)=> {
       values :values
     }
     res.send(data)
-  })
+})
 
 })
+
 exports.getStats =((req,res,next)=> {
-
-
-  data= [{
-      'x': 0.2,
-      'y': 0.4
-  }, {
-      'x': 0.5,
-      'y': -0.3
-  }]
-
-  options= {
-    scales: {
-        yAxes: [{
-            stacked: true
-        }]
-    }
-   }
 
     res.render('admin/stats.ejs',
     {
        pageTitle :' Admin Panel ' ,
        isAuth :req.session.isLoggedIn,
        user : req.user,
-       data : data,
-       options :options,
-      
-
-
     })
 
 })

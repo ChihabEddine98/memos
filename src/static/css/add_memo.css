@@ -85,24 +85,53 @@ input[type="file"]{
     
 }
 
+#imageUpload input{
 
-.remember{
-    margin: 10px 15%;
-    display: flex;
-    align-items: center;
+    width: 69%;
+    margin: 0 0 20px 0;
+    height: 30px;
+    padding: 10px;
     text-align: center;
-    
-}
-.remember input {
-    width: 35px;
-    height: 50px;
-    text-align: center;
-    border: solid var(--navbar_col);
+    border: solid var(--text_col);
     border-width: 2px;
     border-radius: 12px;  
     background-color: var(--overlay_fg_col);
     font-size: 22px; 
+    display: inline-block;
+    
 }
+[type="file"] {
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute !important;
+    white-space: nowrap;
+    width: 1px;
+  }
+   
+  [type="file"] + label {
+    width: 69%;
+    height: 30px;
+    background-color: #000;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 22px;
+    display: inline-block;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+    
+  [type="file"]:focus + label,
+  [type="file"] + label:hover {
+      background-color: #3f42408e;
+  }
+    
+  [type="file"]:focus + label {
+    outline: 1px dotted #000;
+  }
 
 .form-control .btn{
 
@@ -150,3 +179,4 @@ b{
     display: inline-block;
 
 }
+

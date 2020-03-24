@@ -13,7 +13,7 @@
                         <%= errMsg %>
                     </div>
                 <%}%>
-                <form class="login-form" action="/register" method="POST" enctype="multipart/form-data">
+                <form class="register-form" action="/register" method="POST" enctype="multipart/form-data">
                     <div class="user-img">
                          <img src="img/user_icon.png" alt="Utilisateur">
                     </div>
@@ -37,8 +37,10 @@
                         class="<%= errorsFields.find(e => e.param === 'confirmPassword') ? 'invalidInput' : ''%>"
                         name="confirmPassword" value="<%= oldInput.confirmPassword %>" placeholder="Confirmer Le mot de passe">
                     </div>
-                    <div>
-                        <input class="upload-img" type="file" name="image" placeholder="image">
+                    <div id="imageUploader">
+                        <input accept = "image/*"
+                        id="imageUpload" class="upload-img" type="file" required="required" name="image" placeholder="image">
+                        <label for="imageUpload" />Choissisez une image </label>
                     </div>
                     <div class="form-control">
                         <input type="submit" class="btn" value=" S'inscrire">
