@@ -7,9 +7,11 @@
         <nav class="main-header__nav" id="navRes">
             <ul class="main-header__tabs-list">
                 <li class="main-header__tab-item"><a href="/" class="active"> Home</a></li>
+                <% if (isAuth) { %>
                 <li class="main-header__tab-item"><a href="/all_memos"> Mémos</a></li>
                 <li class="main-header__tab-item"><a href="/mes_memos"> Mes Mémos</a></li>
                 <li class="main-header__tab-item"><a href="/add_memo"> New Mémo</a></li>
+                <% }%>
                     <% if (!isAuth) { %>
                         <li class="btn_item"> 
                             <a href="/login" class="btn" > Se connecter </a>

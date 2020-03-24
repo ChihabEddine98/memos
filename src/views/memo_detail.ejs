@@ -19,10 +19,14 @@
         
            <div class="row">
              <img class="memoImg" src="<%= memo.imgUrl %>" alt="<%= memo.title%> ">
-             <% if(memo.owner !== user.id) { %>
-              <h2 class="memo-title"> Partagé ! </h2>
-            <% } %>
            </div>
+
+           <% if(memo.owner !== user.id) { %>
+            <div class="row sharedFrom">
+              <h2 class="memo-title"> partagé par : <br> <%= owner.first_name+' '+owner.last_name %>  </h2>
+              <img src="<%= owner.img_url %>" alt="">
+            </div>
+          <% } %>
            <div class="row oneline">
              <h1 class="memoTitle">  <%= memo.title %></h1>
              <h4 class="memoDate"> Derniere Modification : <%= memo.updatedAt.toISOString().slice(0,10)+' à '+memo.updatedAt.toISOString().slice(11,16) %></h4>

@@ -1,10 +1,10 @@
 /* Variable à utiliser ! ( Couleurs ) */
 :root {
     --main_bg_color: rgb(170, 52, 52);
-    --navbar_col:rgba(26, 21, 21, 0.911);
+    --navbar_col:rgba(8, 7, 7, 0.911);
     --hover_bg_col:rgba(63, 218, 172, 0.911);
     --text_col:rgba(255, 255, 255, 0.911);
-    --text_hover_col:rgb(253, 105, 105);
+    --text_hover_col:rgb(105, 253, 142);
     --overlay_bg_col:rgba(146, 146, 146, 0.534);
     --overlay_bg_dark_col:rgba(32, 29, 29, 0.787);
     --overlay_fg_col:rgba(233, 224, 224, 0.534);
@@ -13,6 +13,9 @@
 }
 
 body{
+  background-image: url('../img/bg_wlcm.jpg');
+  background-size: cover;
+  
     padding: 0;
     margin: 0;
     font-family: 'Courier New', Courier, monospace;

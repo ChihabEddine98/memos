@@ -1,6 +1,8 @@
 
 $(document).ready(function(){
 
+    document.body.style.background = "#f5eedc";
+
     $('#getNbMemosBtn').click(()=>{
         $.ajax({
             url: "/admin/stats_data",  

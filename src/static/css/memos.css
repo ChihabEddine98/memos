@@ -1,6 +1,6 @@
 /* Liste Des mémos  */
 .main {
-    background-image: url('../img/bg_login.jpg');
+    background: linear-gradient(to right, #31ca97, #a7f9d0);
     margin: 0;
     background-size: cover;
     display: block;
@@ -23,7 +23,7 @@
 .main-container .memo{
     margin: 30px;
     padding: 0px 0px;
-    width: 20%;
+    width: 23%;
     height: 280px;
     border: 2px var(--navbar_col) solid;
     background-color: var(--overlay_bg_col);
@@ -43,6 +43,7 @@
     height: 150px;
     margin: 0;
     border-radius: 18px 20px 0 0;
+    object-fit: cover;
 }
 .memo .memo-img:hover{
     border: 0px var(--navbar_col) solid;
@@ -105,6 +106,23 @@
 .main-container .row{
     width: 100%;
 }
+.sharedFrom {
+    width: 100%;
+    display: flex;
+    margin: 20px 30%;
+    align-items: center;
+    background-color: var(--overlay_bg_col);
+    border-radius: 10px;
+    padding: 0 5%;
+}
+.sharedFrom img {
+
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 2% 5%;
+    object-fit: cover;
+}
 .main-container .oneline{ 
     width: 90%;
     padding: 5px 10%;
@@ -127,6 +145,9 @@
     height: 320px;
     width: 100%;
     margin: 0;
+    border-radius: 10px;
+    object-fit: cover;
+    
 }
 hr{
     border: 1px solid black;
@@ -162,7 +183,7 @@ select[multiple]{
     height: 80px;
     border-radius: 50%;
     margin: 0 7px;
-    
+    object-fit: cover;
 }
 
 .listShare{

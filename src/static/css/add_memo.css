@@ -1,5 +1,5 @@
 body{    
-    background-image: url('../img/bg_login.jpg');
+    background: linear-gradient(to right, #31ca97, #a7f9d0);
     background-size: cover;
 }
 /*  Form De connexion ! */

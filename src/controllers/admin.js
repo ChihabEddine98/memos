@@ -174,14 +174,23 @@ exports.getMemo =((req,res,next)=>
                       }
                     }
                   }).then( users =>{
-                    res.render('../views/memo_detail.ejs',
-                    {   pageTitle :'Mémos Detail !',
-                        memo :memo,
-                        isAuth: req.session.isLoggedIn,
-                        user : req.user,
-                        users :users,
-                        isAdmin :req.session.isAdmin
+                        return users
+                  }).then(users=>{
+
+                    const sql='select users.first_name,last_name,img_url from users where id='+memo.owner+';'
+                    User.findByPk(memo.owner).then( userOwner =>{
+                      res.render('../views/memo_detail.ejs',
+                      {   pageTitle :'Mémos Detail !',
+                          memo :memo,
+                          isAuth: req.session.isLoggedIn,
+                          user : req.user,
+                          users :users,
+                          isAdmin :req.session.isAdmin,
+                          owner :userOwner
+                      })
                     })
+            
+
                   })
 
             }
