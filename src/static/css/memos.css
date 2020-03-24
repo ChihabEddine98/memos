@@ -14,7 +14,7 @@
 
 
 .main-container{
-    padding: 20px;
+    padding: 0px;
     align-items: center;
     display: flex;
     flex-wrap: wrap;
@@ -101,25 +101,60 @@
 
 /*  Memo Detail */
 
+.main-container .row{
+    width: 100%;
+}
+.main-container .oneline{ 
+    width: 90%;
+    padding: 5px 10%;
+    align-items: center;
+    display: flex;
+}
 .memoTitle {
-
+    float: left;
     font-size: 52px;
+    margin: auto;
 }
 
 .memoDate {
     float: right;
     margin: 30px 0 0 100px;
     font-size: 24px;
+
 }
 .memoImg {
-    height: 300px;
+    height: 320px;
     width: 100%;
     margin: 0;
 }
+hr{
+    border: 1px solid black;
+}
 .memoDesc {
     font-size: 20px;
+    margin: 0px 5%;
+    width: 90%;
+    flex-wrap: wrap;
 }
 
+
+#shareContainer{
+    width: 40%;
+    background-color: transparent;
+    margin: 30px 32%;
+}
+select[multiple]{
+    border: 2px solid red;
+    background-color: transparent;
+    color: aqua;
+}
+#share_memo{
+
+    border: 2px solid red;
+    background-color: transparent;
+    color: aqua;
+   
+}
 .userImgList{
 
     width: 40px;
@@ -128,10 +163,7 @@
     margin: 5px 0;
     
 }
-#shareContainer{
 
-    margin: 10px 0 0 20px;
-}
 .listShare{
     display: flex;
     color: black;

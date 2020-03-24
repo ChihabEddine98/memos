@@ -112,7 +112,8 @@ exports.postAddMemo =((req,res,next)=>
 {
     const title = req.body.title
     const description= req.body.description
-    const imgUrl = 'url hehe...'
+    const image =req.file
+    const imgUrl = image.path.substring(19)
 
 
       User.findByPk(req.user.id)

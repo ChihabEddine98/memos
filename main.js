@@ -45,7 +45,7 @@ app.set('views','src/views')
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:false}))
-app.use(multer({storage:fileStore,fileFilter:fileFilter}).single('userImage'))
+app.use(multer({storage:fileStore,fileFilter:fileFilter}).single('image'))
 
 app.use(express.static(path.join(__dirname,'src','static')))
 app.use(express.static(path.join(__dirname,'src','uploaded_images')))

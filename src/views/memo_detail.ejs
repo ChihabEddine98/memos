@@ -18,25 +18,23 @@
 <div class="main">
     <main class="main-container"> 
         
-           <div>
-             <img class="memoImg" src="/img/memos_bg.jpg" alt="<%= memo.title%> ">
+           <div class="row">
+             <img class="memoImg" src="<%= memo.imgUrl %>" alt="<%= memo.title%> ">
              <% if(memo.owner !== user.id) { %>
               <h2 class="memo-title"> Partagé ! </h2>
             <% } %>
            </div>
-           <div>
+           <div class="row oneline">
              <h1 class="memoTitle">  <%= memo.title %></h1>
+             <h4 class="memoDate"> Derniere Modification : <%= memo.updatedAt.toISOString().slice(0,10)+' à '+memo.updatedAt.toISOString().slice(11,16) %></h4>
            </div>
-           <div>
-            <h4 class="memoDate"> Derniere Modification : <%= memo.updatedAt.toISOString().slice(0,10)+' à '+memo.updatedAt.toISOString().slice(11,16) %></h4>
-          </div>
-
-          <div>
+          <hr>
+          <div class="row">
             <p class="memoDesc"> <%= memo.description %></p>
           </div>
 
 
-          <div id="shareContainer">
+          <div id="shareContainer" class="row" >
             <form action="/share_memo" method="POST">
               <input type="hidden" value="<%= memo.id %>" name="memoId">
               
@@ -80,9 +78,12 @@
       closeOnScroll: false,
       nativeDropdown: false,
       nativeKeyboard: false,
-      placeholder: "Choissisez Avec Qui ",
+      placeholder: "Choissisez Avec Qui Partager",
       taggable: false,
-      tagPlaceholder: "Enterez un tag..."
+      tagPlaceholder: "Enterez un tag...",
+      messages: {
+        noResults: "Pas De rusltats.",
+    }
   
   });
 
