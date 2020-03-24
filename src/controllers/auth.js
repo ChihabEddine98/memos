@@ -78,11 +78,15 @@ exports.postRegister =((req,res,next)=>{
         bcrypt
           .hash(password, 12)
           .then(hashedPass => {
+          
+            const imgUrl =image.path.substring(19)
+            
             const user = new User({
               email: email,
               password: hashedPass,
               first_name: prenom,
               last_name:nom,
+              img_url :imgUrl,
               role : 'USER',
               sexe : 'm'
             });

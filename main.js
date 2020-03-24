@@ -19,10 +19,10 @@ const authRoutes=require('./src/routes/auth')
 
 const fileStore=multer.diskStorage({
     destination :(req,file,cb)=>{
-        cb(null,'images')
+        cb(null,path.join('src','uploaded_images'))
     },
     filename: (req,file,cb)=>{
-        cb(null,new Date().toISOString()+'__'+file.originalname)
+        cb(null,new Date().toISOString().replace(/:/g, '_')+'__'+file.originalname)
     }
 })
 
@@ -48,6 +48,7 @@ app.use(bodyParser.urlencoded({extended:false}))
 app.use(multer({storage:fileStore,fileFilter:fileFilter}).single('userImage'))
 
 app.use(express.static(path.join(__dirname,'src','static')))
+app.use(express.static(path.join(__dirname,'src','uploaded_images')))
 
 app.use(session(
         {
