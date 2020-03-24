@@ -63,10 +63,23 @@ exports.getAddMemo=((req,res,next)=>
 
 exports.getSharedStatsData =((req,res,next)=> {
   const db=require('../common/database')
-  const sql=''
+  const sql='select users.first_name,users.last_name,sum(case isShared when 1 then 1 else 0 end) as nb_shares FROM user_memos JOIN users ON (users.id=user_memos.userId) GROUP BY userId'
+
 
   db.query(sql).then(result =>{
+    var labels=[]
+    var values=[]
+    for(let user of result[0])
+    {
+      labels.push(user['first_name']+' '+user['last_name'])
+      values.push(user['nb_shares'])
+    }
 
+    var data ={
+      labels:labels,
+      values :values
+    }
+    res.send(data)
 
   })
 
