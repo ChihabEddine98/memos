@@ -10,22 +10,42 @@ exports.getIndex =((req,res,next)=> {
     {
        pageTitle :' Admin Panel ' ,
        isAuth :req.session.isLoggedIn,
-       user : req.user
+       user : req.user,
+       path:'/admin'
     })
 
 })
 
 exports.getUsers =((req,res,next)=> {
 
-    User.findAll()
-            .then(users =>
+  const page=req.query.page
+  const maxParPage=3
+  
+    User.paginate({
+      page: page,
+      paginate : maxParPage
+          })
+            .then(({ docs, pages, total }) =>
                 {
+                    const users=docs
+                    let nbPages
+                    if(total%maxParPage===0)
+                    {
+                        nbPages=total/maxParPage
+                    }
+                    else
+                    {
+                        nbPages=total/maxParPage +1
+                    }
+
                     res.render('../views/admin/users.ejs',
                     { pageTitle :'Users !',
                       users:users,
                       isAuth: req.session.isLoggedIn,
                       userId:req.user.id,
-                      user : req.user
+                      user : req.user,
+                      total:nbPages,
+                      path:'/admin/usr'
                     })
                 })
             .catch( err => console.log(err) )
@@ -36,19 +56,38 @@ exports.getUsers =((req,res,next)=> {
 
 exports.getMemos=((req,res,next)=>
 {
-    Memo.findAll()
-            .then(memos =>
-                {
-                    res.render('../views/memos.ejs',
-                    { pageTitle :'Mémos !',
-                      memos:memos,
-                      isAuth: req.session.isLoggedIn,
-                      canShare:false,
-                      user : req.user,
-                      isAdmin :req.session.isAdmin
-                    })
-                })
-            .catch( err => console.log(err) )
+  const page=req.query.page
+  const maxParPage=3
+          Memo.paginate({
+              page: page,
+              paginate : maxParPage
+          })
+          .then(({ docs, pages, total }) =>
+              {
+                  const memos =docs
+                  let nbPages
+                  if(total%maxParPage===0)
+                  {
+                      nbPages=total/maxParPage
+                  }
+                  else
+                  {
+                      nbPages=total/maxParPage +1
+                  }
+                  res.render('memos',
+                  { pageTitle :'Mémos !',
+                    memos:memos,
+                    isAuth: req.session.isLoggedIn,
+                    canShare:false,
+                    userId:req.user.id,
+                    total :nbPages,
+                    user : req.user,
+                    isAdmin : req.session.isAdmin,
+                    path:'/admin/memos'
+                  })
+              })
+          .catch( err => console.log(err) )
+  
     
 })
 
@@ -59,7 +98,8 @@ exports.getAddMemo=((req,res,next)=>
                   pageTitle :'Nouveau Mémo',
                   isAuth: req.session.isLoggedIn ,
                   user : req.user,
-                  isAdmin :req.session.isAdmin
+                  isAdmin :req.session.isAdmin,
+                  path:'/admin/add_memo'
                 })
 })
 
@@ -157,6 +197,7 @@ exports.getStats =((req,res,next)=> {
        pageTitle :' Admin Panel ' ,
        isAuth :req.session.isLoggedIn,
        user : req.user,
+       path:'/admin/stats'
     })
 
 })
@@ -186,7 +227,8 @@ exports.getMemo =((req,res,next)=>
                           user : req.user,
                           users :users,
                           isAdmin :req.session.isAdmin,
-                          owner :userOwner
+                          owner :userOwner,
+                          path:'/admin/memos'
                       })
                     })
             

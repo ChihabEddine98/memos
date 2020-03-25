@@ -12,17 +12,34 @@ userFullName = async function(userId) {
 
 exports.getMemos=((req,res,next)=>
 {
-    Memo.findAll()
-            .then(memos =>
+    const page=req.query.page
+    const maxParPage=3
+            Memo.paginate({
+                page: page,
+                paginate : maxParPage
+            })
+            .then(({ docs, pages, total }) =>
                 {
+                    const memos =docs
+                    let nbPages
+                    if(total%maxParPage===0)
+                    {
+                        nbPages=total/maxParPage
+                    }
+                    else
+                    {
+                        nbPages=total/maxParPage +1
+                    }
                     res.render('../views/memos.ejs',
                     { pageTitle :'Mémos !',
                       memos:memos,
                       isAuth: req.session.isLoggedIn,
                       canShare:false,
                       userId:req.user.id,
+                      total :nbPages,
                       user : req.user,
-                      isAdmin : req.session.isAdmin
+                      isAdmin : req.session.isAdmin,
+                      path:'/memos'
                     })
                 })
             .catch( err => console.log(err) )
@@ -32,34 +49,68 @@ exports.getMemos=((req,res,next)=>
 
 exports.getMesMemos=((req,res,next)=>
 {
-    req.user.getMemos()
-            .then(memos =>
-                {
-                    User.findAll({
-                        where: {
-                          id: {
-                            [Sqlz.Op.not]: req.user.id
-                          }
-                        }
-                      })
-                    .then(users =>{
 
+    const page=req.query.page
+    const maxParPage=3
+    const User_Memo=require('../models/User_Memo')
+ 
     
-                        res.render('../views/memos.ejs',
-                        { pageTitle :'Mémos !',
-                          memos:memos,
-                          users:users,
-                          isAuth: req.session.isLoggedIn,
-                          canShare:true,
-                          userId:req.user.id,
-                          user : req.user,
-                          isAdmin:req.session.isAdmin
-            
+    User_Memo.paginate({
+        page: page,
+        paginate : maxParPage,
+        where :{ userId:req.user.id} ,
+        attributes: [
+            'memoId'
+         ],
+        }
+        )
+            .then(({ docs, pages, total }) =>
+                {
+                    
+                    
+                    Memo.findAll({
+                        where :{id : docs.map(d=>d.memoId)}
+                    }).then((memos)=>{
+                        let nbPages
+                        if(total%maxParPage===0)
+                        {
+                            nbPages=total/maxParPage
+                        }
+                        else
+                        {
+                            nbPages=total/maxParPage +1
+                        }
+    
+                        User.findAll({
+                            where: {
+                              id: {
+                                [Sqlz.Op.not]: req.user.id
+                              }
+                            }
+                          })
+                        .then(users =>{
+    
+        
+                            res.render('../views/memos.ejs',
+                            { pageTitle :'Mémos !',
+                              memos:memos,
+                              users:users,
+                              isAuth: req.session.isLoggedIn,
+                              canShare:true,
+                              userId:req.user.id,
+                              total :nbPages,
+                              user : req.user,
+                              isAdmin:req.session.isAdmin,
+                              path:'/mes_memos'
+                
+                            })
                         })
+                        .catch(
+                            err=>console.log(err)
+                        )
                     })
-                    .catch(
-                        err=>console.log(err)
-                    )
+
+
 
                 })
             .catch( err => console.log(err) )
@@ -79,19 +130,30 @@ exports.getMemo =((req,res,next)=>
                       }
                     }
                   }).then( users =>{
-                    res.render('../views/memo_detail.ejs',
-                    {   pageTitle :'Mémos Detail !',
-                        memo :memo,
-                        isAuth: req.session.isLoggedIn,
-                        user : req.user,
-                        users :users,
-                        isAdmin :req.session.isAdmin
+                        return users
+                  }).then(users=>{
+
+                    const sql='select users.first_name,last_name,img_url from users where id='+memo.owner+';'
+                    User.findByPk(memo.owner).then( userOwner =>{
+                      res.render('../views/memo_detail.ejs',
+                      {   pageTitle :'Mémos Detail !',
+                          memo :memo,
+                          isAuth: req.session.isLoggedIn,
+                          user : req.user,
+                          users :users,
+                          isAdmin :req.session.isAdmin,
+                          owner :userOwner,
+                          path:'/memos'
+                      })
                     })
+            
+
                   })
 
             }
         )
         .catch(err => console.log(err))
+
 
 
 })
@@ -103,7 +165,8 @@ exports.getAddMemo=((req,res,next)=>
                   pageTitle :'Nouveau Mémo',
                   isAuth: req.session.isLoggedIn ,
                   user : req.user,
-                  isAdmin :req.session.isAdmin
+                  isAdmin :req.session.isAdmin,
+                  path:'/add_memo'
                 })
 })
 
@@ -120,7 +183,8 @@ exports.getEditMemo=((req,res,next)=>
                 isAuth: req.session.isLoggedIn ,
                 user : req.user,
                 isAdmin :req.session.isAdmin,
-                memo :memo
+                memo :memo,
+                path:'/add_memo'
                 
             })
         })
@@ -176,12 +240,17 @@ exports.postAddMemo =((req,res,next)=>
     const title = req.body.title
     const description= req.body.description
     const image =req.file
-    const imgUrl = image.path.substring(19)
-
+    let imgUrl =null
+    if(image)
+    {
+      imgUrl =image.path.substring(19)
+    }
 
       User.findByPk(req.user.id)
           .then( user =>{
             
+
+
             user.createMemo({
                 title:title,
                 description:description,

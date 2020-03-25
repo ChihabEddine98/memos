@@ -15,11 +15,12 @@
 body{
   background-image: url('../img/bg_wlcm.jpg');
   background-size: cover;
-  
-    padding: 0;
-    margin: 0;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 20px;
+  width: 100%;
+  padding: 0;
+  overflow-x: hidden;
+  margin: 0;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 20px;
 }
 
 /* NavBar:  */
@@ -27,7 +28,6 @@ body{
     width: 100%;
     height: auto;
     background-color: var(--navbar_col);
-    padding: 0 1.5rem;
 }
 
 .main-header__nav{
@@ -40,7 +40,7 @@ body{
 }
 .main-header__tabs-list{
 
-    padding: 40px;
+    padding: 30px;
     margin: 0;
     width: 100%;
     align-items: center;
@@ -74,8 +74,19 @@ body{
     color: var(--text_col);
 }
 
+.main-header__tab-item p{
 
-.main-header__tab-item:hover,.main-header__tab-item a:active{
+  color: white;
+  text-align: right;
+  float: right;
+  margin-left: 425px;
+  font-size: 24px;
+  padding: 0;
+  color: var(--text_col);
+}
+
+
+.main-header__tab-item a:hover,.main-header__tab-item a:active ,a.active{
     
     color: var(--text_hover_col);
     border: solid 3px var(--text_hover_col);

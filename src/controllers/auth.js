@@ -22,7 +22,8 @@ exports.getLogin =((req,res,next)=>{
         email:"",
         password :""
       },
-      errorsFields :[]
+      errorsFields :[],
+      path:'/login'
     })
 })
 
@@ -47,7 +48,8 @@ exports.getRegister =((req,res,next)=>{
         password: "",
         confirmPassword :""
       },
-      errorsFields : []
+      errorsFields : [],
+      path:'/register'
     })
 })
 

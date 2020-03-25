@@ -1,5 +1,6 @@
 const Sqlz=require('sequelize')
 const db=require('../common/database')
+const sequelizePaginate = require('sequelize-paginate')
 
 
 const User_Memo=db.define('User_Memo',{
@@ -9,5 +10,7 @@ const User_Memo=db.define('User_Memo',{
         allowNull :false
     }
 })
+
+sequelizePaginate.paginate(User_Memo)
 
 module.exports=User_Memo

@@ -6,11 +6,11 @@
     <header class="main-header">
         <nav class="main-header__nav" id="navRes">
             <ul class="main-header__tabs-list">
-                <li class="main-header__tab-item"><a href="/" class="active"> Home</a></li>
+                <li class="main-header__tab-item"><a href="/"  class="<%= path === '/' ? 'active' : '' %>"> Home</a></li>
                 <% if (isAuth) { %>
-                <li class="main-header__tab-item"><a href="/all_memos"> Mémos</a></li>
-                <li class="main-header__tab-item"><a href="/mes_memos"> Mes Mémos</a></li>
-                <li class="main-header__tab-item"><a href="/add_memo"> New Mémo</a></li>
+                <li class="main-header__tab-item"><a href="/all_memos" class="<%= path === '/memos' ? 'active' : '' %>""> Mémos</a></li>
+                <li class="main-header__tab-item"><a href="/mes_memos" class="<%= path === '/mes_memos' ? 'active' : '' %>"> Mes Mémos</a></li>
+                <li class="main-header__tab-item"><a href="/add_memo" class="<%= path === '/add_memo' ? 'active' : '' %>"> New Mémo</a></li>
                 <% }%>
                     <% if (!isAuth) { %>
                         <li class="btn_item"> 
@@ -20,6 +20,11 @@
                             <a class="btn" href="/register"> S'inscrire </a>
                         </li>
                     <% } else { %>
+                        <li class="main-header__tab-item">
+                            <% let fullname=user.first_name+' '+user.last_name %> 
+                            <p> <%= fullname.substring(0,18) %> </p>
+                        </li>    
+
                         <li class="btn_item">
                             <form action="/logout" method="post">
                                 <button type="submit" id="btn_logout"> 

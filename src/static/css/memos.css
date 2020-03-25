@@ -1,6 +1,7 @@
 /* Liste Des mémos  */
 .main {
-    background: linear-gradient(to right, #31ca97, #a7f9d0);
+    background: linear-gradient(to right, #57796ec4, #91d4bcaf);
+
     margin: 0;
     background-size: cover;
     display: block;
@@ -10,14 +11,26 @@
 }
 .main h1{
     margin: 5px 0 0 0;
+    color: #171a18;
 }
 
 
 .main-container{
+    margin: 0 0%;
+    width: 100%;
+    min-height: 800px;
+    overflow: hidden;
     padding: 0px;
     align-items: center;
+
+    display: block;
+    flex-wrap: wrap;
+}
+.main-container .memos{
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
+    margin: 0 10%;
 }
 
 .main-container .memo{
@@ -25,9 +38,9 @@
     padding: 0px 0px;
     width: 23%;
     height: 280px;
-    border: 2px var(--navbar_col) solid;
-    background-color: var(--overlay_bg_col);
-    border-radius: 20px;
+    border: 0px var(--navbar_col) solid;
+    background-color: #4058588e;
+    border-radius: 10px;
     align-items: center;
     text-align: center;
 
@@ -42,7 +55,7 @@
     width: 100%;
     height: 150px;
     margin: 0;
-    border-radius: 18px 20px 0 0;
+    border-radius: 8px 8px 0 0;
     opacity: 0.6;
     object-fit: cover;
 }
@@ -50,7 +63,7 @@
     width: 100%;
     height: 150px;
     margin: 0;
-    border-radius: 18px 20px 0 0;
+    border-radius: 8px 7px 0 0;
     opacity: 1;
     object-fit: cover;
 }
@@ -112,19 +125,29 @@
 
 /*  Memo Detail */
 
+.mainDetail {
+    background: linear-gradient(to right, #b5ccc5f6, #d0e9e0de);
+    margin: 0;
+    background-size: cover;
+    display: block;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
 .main-container .row{
     width: 100%;
 }
-.sharedFrom {
-    width: 100%;
+#sharedFrom {
+    width: 35%;
     display: flex;
-    margin: 20px 30%;
+    margin: 20px 26%;
     align-items: center;
     background-color: var(--overlay_bg_col);
     border-radius: 10px;
     padding: 0 5%;
 }
-.sharedFrom img {
+#sharedFrom img {
 
     width: 120px;
     height: 120px;
@@ -222,3 +245,29 @@ select[multiple]{
     cursor: pointer;
 }
 
+.pagination {
+    margin: 20px 32%;
+    border-radius: 4px;
+    width: 36%;
+    text-align: center;
+    background-color: #01050563;
+  }
+  
+  .pagination a {
+    text-decoration: none;
+    color: #ffffff;
+    padding: 2px 6px;
+    font-size: 26px;
+    border: 2px solid #010505;
+    background-color: #0c0c0c;
+    margin: 0 5px;
+    border-radius: 5px;
+  }
+  
+  .pagination a:hover,
+  .pagination a:active,
+  .pagination a.active {
+    color: rgb(89, 243, 159);
+    background-color: #2d3838e8;
+
+  }

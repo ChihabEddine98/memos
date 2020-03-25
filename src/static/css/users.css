@@ -1,13 +1,14 @@
 .main {
-    background: linear-gradient(to right, #31ca97, #a7f9d0);
+    background: linear-gradient(to right, #c0c7c5f6, #e3e9e7de);
     margin: 0;
     background-size: cover;
-    font-size: 26px;
+    font-size: 28px;
     display: block;
     align-items: center;
     text-align: center;
     padding: 20px;
     color: black;
+    height: 800px;
 }
 
 .add_user {
@@ -66,7 +67,7 @@ table {
 
 table tr {
     border-bottom: 1px solid var(--bg-col);
-    height: 60px;
+    height: 50px;
     padding: 5px 0;
 }
 
@@ -91,4 +92,32 @@ td {
     width: 180px;
 
 }
+
+
+.pagination {
+    margin: 20px 32%;
+    border-radius: 4px;
+    width: 36%;
+    text-align: center;
+    background-color: #01050563;
+  }
+  
+  .pagination a {
+    text-decoration: none;
+    color: #ffffff;
+    padding: 2px 6px;
+    font-size: 26px;
+    border: 2px solid #010505;
+    background-color: #0c0c0c;
+    margin: 0 5px;
+    border-radius: 5px;
+  }
+  
+  .pagination a:hover,
+  .pagination a:active,
+  .pagination a.active {
+    color: rgb(89, 243, 159);
+    background-color: #2d3838e8;
+
+  }
 

@@ -5,7 +5,7 @@
 
 <div class="main">
 
-    <div class="add_user">
+    <!-- <div class="add_user">
 
         <h4>
             Ajouter un nouveau utilisateur ?
@@ -15,14 +15,15 @@
             Ajouter
         </a>
     
-    </div>
+    </div> -->
 
-    <hr>
 
 
     <div class="users">
 
         <h2> Utilisateurs !</h2>
+        <hr>
+
         <table>
             <thead>
             <tr>
@@ -70,10 +71,10 @@
                     </td> 
                     
                     <td>
-                        <form action="/admin/edit_user" method="POST">
+                        <!-- <form action="/admin/edit_user" method="POST">
                             <input type="hidden" value="<%= user.id %>" name="userId">
                             <input type="submit" class="btn" value="Modifier"/> 
-                        </form>
+                        </form> -->
                     </td>
                 </tr>
             <% } %>
@@ -84,6 +85,12 @@
 
             </tbody>
         </table>
+
+        <section class="pagination">
+            <% for(i=1;i<=total ;i++) { %>
+            <a href="all_users?page=<%= i %>"><%= i %></a>
+            <%}%>
+        </section>
 
     </div>
 

@@ -1,5 +1,6 @@
 const Sqlz=require('sequelize')
 const db=require('../common/database')
+const sequelizePaginate = require('sequelize-paginate')
 
 
 const User=db.define('user',{
@@ -19,6 +20,7 @@ const User=db.define('user',{
     sexe : Sqlz.STRING
 
 })
+sequelizePaginate.paginate(User)
 
 
 module.exports = User

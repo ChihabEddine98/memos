@@ -84,7 +84,8 @@ app.get('/', (req, res,next)=>{
         { pageTitle: 'Welcome Page',
           isAuth: req.session.isLoggedIn,
           user : req.user,
-          isAdmin:req.session.isAdmin
+          isAdmin:req.session.isAdmin,
+          path:'/'
         })
 })
 

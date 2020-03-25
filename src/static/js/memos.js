@@ -1,8 +1,15 @@
 // Memo Detail Sharing functionnality
 
 function listUsersRow(option) {
+
+    imgSrc="/img/profil_default_male.png"
+    if(option.dataset.src)
+    {
+     imgSrc=option.dataset.src
+    }
     var template = [
-      "<div class='listShare'><img class='userImgList' src='", option.dataset.src, "'/><span>",
+
+      "<div class='listShare'><img class='userImgList' src='", imgSrc, "'/><span>",
         option.textContent,
       "</span></div>"
     ];

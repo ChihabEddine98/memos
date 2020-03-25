@@ -6,12 +6,13 @@
     <header class="main-header">
         <nav class="main-header__nav" id="navRes">
             <ul class="main-header__tabs-list">
-                <li class="main-header__tab-item"><a href="/" class="active"> Home</a></li>
-                <li class="main-header__tab-item"><a href="/admin/all_users"> Users </a></li>
-                <li class="main-header__tab-item"><a href="/admin/all_memos"> Mémos</a></li>
-                <li class="main-header__tab-item"><a href="/admin/add_memo"> New Mémo</a></li>
-                <li class="main-header__tab-item"><a href="/admin/stats"> Stats</a></li>
-                    <% if (!isAuth) { %>
+                <li class="main-header__tab-item"><a href="/admin" class="<%= path === '/admin' ? 'active' : '' %>"> Home</a></li>
+                <li class="main-header__tab-item"><a href="/admin/all_users" class="<%= path === '/admin/usr' ? 'active' : '' %>"> Users </a></li>
+                <li class="main-header__tab-item"><a href="/admin/all_memos" class="<%= path === '/admin/memos' ? 'active' : '' %>"> Mémos</a></li>
+                <li class="main-header__tab-item"><a href="/admin/add_memo" class="<%= path === '/admin/add_memo' ? 'active' : '' %>"> New Mémo</a></li>
+                <li class="main-header__tab-item"><a href="/admin/stats" class="<%= path === '/admin/stats' ? 'active' : '' %>"> Stats</a></li>
+
+                <% if (!isAuth) { %>
                         <li class="btn_item"> 
                             <a href="/login" class="btn" > Se connecter </a>
                         </li>
@@ -19,7 +20,10 @@
                             <a class="btn" href="/register"> S'inscrire </a>
                         </li>
                     <% } else { %>
-
+                        <li class="main-header__tab-item">
+                            <% let fullname=user.first_name+' '+user.last_name %> 
+                            <p> <%= fullname.substring(0,13) %> </p>
+                        </li>    
                         <li class="btn_item">
                             <form action="/logout" method="post">
                                 <button type="submit" id="btn_logout"> 

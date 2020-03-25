@@ -1,7 +1,8 @@
 
 $(document).ready(function(){
-
-    document.body.style.background = "#f5eedc";
+    
+    document.body.style.background = "#f7f7f7";
+    s="linear-gradient(to right, #c0c7c5f6, #e3e9e7de)"
 
     $('#getNbMemosBtn').click(()=>{
         $.ajax({

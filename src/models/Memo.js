@@ -1,6 +1,8 @@
 const Sqlz=require('sequelize')
 
 const db=require('../common/database')
+const sequelizePaginate = require('sequelize-paginate')
+
 
 const Memo =db.define('memo',{
     id:{
@@ -14,12 +16,12 @@ const Memo =db.define('memo',{
     description :Sqlz.TEXT,
     imgUrl: {
         type : Sqlz.STRING,
-        allowNull:false
+        allowNull:true
     },
     owner : Sqlz.INTEGER
 
 })
 
-
+sequelizePaginate.paginate(Memo)
 
 module.exports = Memo
