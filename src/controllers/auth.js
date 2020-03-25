@@ -58,6 +58,7 @@ exports.postRegister =((req,res,next)=>{
     const password=req.body.password
     const image=req.file
     const sexe=req.body.gender
+    let imgUrl=null
 
 
     const errors=validationResult(req)
@@ -81,7 +82,10 @@ exports.postRegister =((req,res,next)=>{
           .hash(password, 12)
           .then(hashedPass => {
           
-            const imgUrl =image.path.substring(19)
+            if(image)
+            {
+              imgUrl =image.path.substring(19)
+            }
             
             const user = new User({
               email: email,
