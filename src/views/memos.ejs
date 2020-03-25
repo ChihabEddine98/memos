@@ -19,7 +19,12 @@
                     <article class="memo">
                         <div class="rowMemo">
                             <a href="memos/<%= memo.id %>">
-                                <img class="memo-img" src="<%= memo.imgUrl %>" alt="<%= memo.title%> ">
+                                <% if (!memo.imgUrl) { %>
+                                    <img class="memo-img-default" src="/img/memo_default.jpg" alt="<%= memo.title%> ">
+                                <% }else { %>
+                                    <img class="memo-img" src="<%= memo.imgUrl %>" alt="<%= memo.title%> ">
+
+                                <% } %>
                             </a>
                         </div>
                         <div class="rowMemo">
