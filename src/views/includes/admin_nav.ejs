@@ -20,31 +20,60 @@
                             <a class="btn" href="/register"> S'inscrire </a>
                         </li>
                     <% } else { %>
-                        <li class="main-header__tab-item">
-                            <% let fullname=user.first_name+' '+user.last_name %> 
-                            <p> <%= fullname.substring(0,13) %> </p>
-                        </li>    
-                        <li class="btn_item">
-                            <form action="/logout" method="post">
-                                <button type="submit" id="btn_logout"> 
-                                    <img src="/img/logout_icon.png" alt="" class="userImg">
-                                </button>
-                            </form>
-                        </li>
-                        <li>
-                            <a href="/admin/edit_user">
-                                <% if (!user.img_url) { %>
-                                    <% if (user.sexe==='m'){ %>
-                                        <img class="userImg" src="/img/profil_default_male.png" alt=""/>
-                                    <% }else { %>
-                                        <img class="userImg" src="/img/profil_default_female.jpg" alt=""/>
-                                <% }}else { %>
-                                    <img class="userImg" src="<%= user.img_url %>" alt="photo de profil"/>
-                                <% } %>
-                            </a>
+                        <div class="right_nav">
 
-                        </li>
+                            <div class="fullname">
 
+                                <% let fullname=user.first_name+' '+user.last_name %> 
+
+                                <p> <%= fullname.substring(0,24) %> </p>
+
+                            </div>  
+
+    
+
+                          
+
+                                <a href="/admin/edit_user">
+
+                                    <% if (!user.img_url) { %>
+
+                                        <% if (user.sexe==='m'){ %>
+
+                                            <img class="userImg" src="/img/profil_default_male.png" alt=""/>
+
+                                        <% }else { %>
+
+                                            <img class="userImg" src="/img/profil_default_female.jpg" alt=""/>
+
+                                    <% }}else { %>
+
+                                        <img class="userImg" src="<%= user.img_url %>" alt="photo de profil"/>
+
+                                    <% } %>
+
+                                </a>
+
+
+
+                          
+
+                            
+
+                            <!-- <li class="btn_item"> -->
+
+                                <form action="/logout" method="post">
+
+                                    <button type="submit" id="btn_logout"> 
+
+                                        <img src="/img/logout_icon.png" alt="" class="userImg">
+
+                                    </button>
+
+                                </form>
+
+                            <!-- </li> -->
+                        </div>
                     <% } %>
             
                 <li class="main-header__tab-item">
