@@ -1,6 +1,5 @@
 const express=require('express')
 const adminController=require('../controllers/admin')
-const { body }=require('express-validator/check')
 
 const router=express.Router()
 

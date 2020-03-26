@@ -2,14 +2,13 @@ const Memo=require('../models/Memo')
 const User=require('../models/User')
 const Sqlz=require('sequelize')
 const db=require('../common/database')
-const { validationResult }=require('express-validator/check')
-const bcrypt = require('bcryptjs')
+
 
 
 
 exports.getIndex =((req,res,next)=> {
 
-    res.render('../views/admin/index.ejs',
+    res.render('admin/index',
     {
        pageTitle :' Admin Panel ' ,
        isAuth :req.session.isLoggedIn,
@@ -41,7 +40,7 @@ exports.getUsers =((req,res,next)=> {
                         nbPages=total/maxParPage +1
                     }
 
-                    res.render('../views/admin/users.ejs',
+                    res.render('admin/users',
                     { pageTitle :'Users !',
                       users:users,
                       isAuth: req.session.isLoggedIn,
@@ -96,7 +95,7 @@ exports.getMemos=((req,res,next)=>
 
 exports.getAddMemo=((req,res,next)=>
 {
-    res.render('../views/add_memo.ejs',
+    res.render('add_memo',
                 {
                   pageTitle :'Nouveau Mémo',
                   isAuth: req.session.isLoggedIn ,
@@ -195,7 +194,7 @@ exports.getStatsData =((req,res,next)=> {
 
 exports.getStats =((req,res,next)=> {
 
-    res.render('admin/stats.ejs',
+    res.render('admin/stats',
     {
        pageTitle :' Admin Panel ' ,
        isAuth :req.session.isLoggedIn,
@@ -223,7 +222,7 @@ exports.getMemo =((req,res,next)=>
 
                     const sql='select users.first_name,last_name,img_url from users where id='+memo.owner+';'
                     User.findByPk(memo.owner).then( userOwner =>{
-                      res.render('../views/memo_detail.ejs',
+                      res.render('memo_detail',
                       {   pageTitle :'Mémos Detail !',
                           memo :memo,
                           isAuth: req.session.isLoggedIn,
@@ -256,7 +255,7 @@ exports.getEditUser =((req,res,next)=>{
     msg=null
   }
   const user=req.user
-  res.render('edit_user.ejs',
+  res.render('edit_user',
   { pageTitle :'Modifier vos informations ',
     isAuth: true,
     isAdmin : true,

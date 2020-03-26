@@ -14,7 +14,7 @@ exports.getLogin =((req,res,next)=>{
       msg=null
     }
     
-    res.render('../views/auth/login.ejs',
+    res.render('auth/login',
     { pageTitle :'Connection à Mémos',
       isAuth : false,
       errMsg: msg,
@@ -37,7 +37,7 @@ exports.getRegister =((req,res,next)=>{
     else{
       msg=null
     }
-    res.render('../views/auth/register.ejs',
+    res.render('auth/register',
     { pageTitle :'Créer un compte ',
       isAuth: false,
       errMsg :msg,
@@ -66,7 +66,7 @@ exports.postRegister =((req,res,next)=>{
     const errors=validationResult(req)
     if( !errors.isEmpty())
     {
-      return res.render('../views/auth/register.ejs',
+      return res.render('auth/register',
       { pageTitle :'Créer un compte ',
         isAuth: false,
         errMsg :errors.array()[0].msg,
@@ -77,7 +77,8 @@ exports.postRegister =((req,res,next)=>{
           password: password,
           confirmPassword :req.body.confirmPassword
         },
-        errorsFields : errors.array()
+        errorsFields : errors.array(),
+        path:'/register'
       })
     }
         bcrypt
@@ -119,7 +120,7 @@ exports.postLogin = ((req,res,next)=>{
 
     if(!errors.isEmpty())
     {
-      return res.render('../views/auth/login.ejs',
+      return res.render('auth/login',
       { pageTitle :'Connection à Mémos',
         isAuth : false,
         errMsg: errors.array()[0].msg,
@@ -136,7 +137,7 @@ exports.postLogin = ((req,res,next)=>{
     .then(user => {
       if(!user)
       {
-        return res.render('auth/login.ejs',
+        return res.render('auth/login',
         { pageTitle :'Connection à Mémos',
           isAuth : false,
           errMsg: 'Email Ou Mot de passe invalides',

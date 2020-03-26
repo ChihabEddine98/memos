@@ -32,7 +32,7 @@ exports.getMemos=((req,res,next)=>
                     {
                         nbPages=total/maxParPage +1
                     }
-                    res.render('../views/memos.ejs',
+                    res.render('memos',
                     { pageTitle :'Mémos !',
                       memos:memos,
                       isAuth: req.session.isLoggedIn,
@@ -93,7 +93,7 @@ exports.getMesMemos=((req,res,next)=>
                         .then(users =>{
     
         
-                            res.render('../views/memos.ejs',
+                            res.render('memos',
                             { pageTitle :'Mémos !',
                               memos:memos,
                               users:users,
@@ -137,7 +137,7 @@ exports.getMemo =((req,res,next)=>
 
                     const sql='select users.first_name,last_name,img_url from users where id='+memo.owner+';'
                     User.findByPk(memo.owner).then( userOwner =>{
-                      res.render('../views/memo_detail.ejs',
+                      res.render('memo_detail',
                       {   pageTitle :'Mémos Detail !',
                           memo :memo,
                           isAuth: req.session.isLoggedIn,
@@ -162,7 +162,7 @@ exports.getMemo =((req,res,next)=>
 
 exports.getAddMemo=((req,res,next)=>
 {
-    res.render('../views/add_memo.ejs',
+    res.render('add_memo',
                 {
                   pageTitle :'Nouveau Mémo',
                   isAuth: req.session.isLoggedIn ,
@@ -373,7 +373,7 @@ exports.getEditUser =((req,res,next)=>{
       msg=null
     }
     const user=req.user
-    res.render('edit_user.ejs',
+    res.render('edit_user',
     { pageTitle :'Modifier vos informations ',
       isAuth: true,
       isAdmin : true,
@@ -406,7 +406,7 @@ exports.getEditUser =((req,res,next)=>{
     {
       if(password)
       {
-        return res.render('edit_user.ejs',
+        return res.render('edit_user',
         { pageTitle :'Modifier Vos Infos ',
           isAuth: true,
           isAdmin: req.session.isAdmin,
@@ -431,7 +431,7 @@ exports.getEditUser =((req,res,next)=>{
   
               if(image)
               {
-                console.log('hahaa kayn image',image)
+               
                 user.img_url =image.path.substring(19)
                 user.save()
                 return user
