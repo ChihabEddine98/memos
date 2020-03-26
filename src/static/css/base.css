@@ -58,6 +58,16 @@ body{
   margin: 5px 0;
   float: right;
 }
+a .userImg:hover {
+
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  margin: 5px 0;
+  filter: contrast(1.4);
+  transform: scale(1.2);
+  float: right;
+}
 
 .main-header__tab-item{
     float: left;

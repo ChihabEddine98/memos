@@ -127,7 +127,8 @@ exports.postLogin = ((req,res,next)=>{
           email:email,
           password :password
         },
-        errorsFields : errors.array()
+        errorsFields : errors.array(),
+        path:'/login'
       })
     }
 
@@ -143,7 +144,8 @@ exports.postLogin = ((req,res,next)=>{
             email:email,
             password :password
           },
-          errorsFields : errors.array()
+          errorsFields : errors.array(),
+          path : '/login'
         })
       }
       bcrypt

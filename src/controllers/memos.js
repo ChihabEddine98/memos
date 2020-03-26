@@ -2,6 +2,8 @@ const Memo = require('../models/Memo')
 const User=require('../models/User')
 const Sqlz=require('sequelize')
 const Common=require('../common/common')
+const { validationResult }=require('express-validator/check')
+const bcrypt = require('bcryptjs')
 
 
 userFullName = async function(userId) {
@@ -360,6 +362,117 @@ exports.postDeleteMemo=((req,res,next)=>
 
 }) 
 
+exports.getEditUser =((req,res,next)=>{
+
+    let msg=req.flash('error')
+    if(msg.length >0)
+    {
+      msg=msg[0]
+    }
+    else{
+      msg=null
+    }
+    const user=req.user
+    res.render('edit_user.ejs',
+    { pageTitle :'Modifier vos informations ',
+      isAuth: true,
+      isAdmin : true,
+      errMsg :msg,
+      user :user,
+      oldInput: {
+        nom:user.first_name,
+        prenom:user.last_name,
+        email : user.email,
+        password: "",
+        confirmPassword :""
+      },
+      errorsFields : [],
+      path:'/edit'
+    })
+  })
+  
 
 
+  exports.postEditUser =((req,res,next)=>{
+    const nom=req.body.nom
+    const prenom =req.body.prenom
+    const email=req.body.email
+    const password=req.body.password
+    const image=req.file
 
+  
+    const errors=validationResult(req)
+    if( !errors.isEmpty())
+    {
+      if(password)
+      {
+        return res.render('edit_user.ejs',
+        { pageTitle :'Modifier Vos Infos ',
+          isAuth: true,
+          isAdmin: req.session.isAdmin,
+          user: req.user,
+          errMsg :errors.array()[0].msg,
+          oldInput: {
+            nom:nom,
+            prenom:prenom,
+            email : email,
+            password: password,
+            confirmPassword :""
+          },
+          errorsFields : errors.array(),
+          path:'/edit'
+        })
+      }
+  
+    }
+  
+        User.findByPk(req.user.id)
+             .then(user =>{
+  
+              if(image)
+              {
+                console.log('hahaa kayn image',image)
+                user.img_url =image.path.substring(19)
+                user.save()
+                return user
+              }
+              return user
+              })
+              .then(user=>{
+                if(password)
+                {
+                 bcrypt
+                 .hash(password, 12)
+                 .then(hashedPass => {
+   
+                   user.password=hashedPass
+                   user.save()
+                   if( req.session.isAdmin)
+                   {
+                    return res.redirect('/admin/all_users/')
+  
+                   }
+                   else
+                   {
+                    return res.redirect('/')
+  
+                   }
+                   
+                 })
+                }
+                if( req.session.isAdmin)
+                {
+                 return res.redirect('/admin/all_users/')
+  
+                }
+                else
+                {
+                 return res.redirect('/')
+  
+                }
+              })
+                
+        
+  
+    //res.render('../views/auth/login.ejs',{ pageTitle :'Connection à Mémos'})
+  })

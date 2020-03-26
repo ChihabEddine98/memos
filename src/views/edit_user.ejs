@@ -1,0 +1,78 @@
+<% if(isAdmin) { %>
+    <%- include('includes/admin_head.ejs')%>
+    <link rel="stylesheet" href="/css/edit_user.css">
+    </head>
+    <%- include('includes/admin_nav.ejs')%>
+    <% } else { %>
+    
+<%- include('includes/head.ejs')%>
+<link rel="stylesheet" href="/css/edit_user.css">
+</head>
+<%- include('includes/nav.ejs')%>
+<% } %>
+        <div class="main">
+
+            <main class="main-container">
+
+                <% if(errMsg) { %>
+                    <div class="errMsg">
+                        <%= errMsg %>
+                    </div>
+                <%}%>
+                <form class="register-form" action="/edit_user" method="POST" enctype="multipart/form-data">
+                    <div class="user-img">
+                        <% if (!user.img_url) { %>
+                            <% if (user.sexe==='m'){ %>
+                                <img  src="/img/profil_default_male.png" alt=""/>
+                            <% }else { %>
+                                <img  src="/img/profil_default_female.jpg" alt=""/>
+                        <% }}else { %>
+                            <img  src="<%= user.img_url %>" alt="photo de profil"/>
+                        <% } %>
+                    </div>
+
+                    <!-- <div class="genderInputContainer">
+                        <input type="radio" id="male" name="gender" value="m">
+                        <label for="male" id="maleLabel"><i class="fa fa-mars" style="color: rgb(19, 86, 231);" aria-hidden="true"></i></label><br>
+                        <input type="radio" id="female" name="gender"  value="f">
+                        <label for="female" id="femaleLabel"><i class="fa fa-venus" style="color: rgb(219, 10, 209);" aria-hidden="true"></i></label><br>
+                    </div> -->
+
+                    <div class="one-line-form-control">
+                        <input type="text" name="nom" value="<%= oldInput.nom %>" placeholder="Nom" readonly>   
+                        <input type="text" name="prenom" value="<%= oldInput.prenom %>" placeholder="Prénom" readonly>                 
+                    </div>
+
+                    <div class="form-control">
+                        <input type="email" 
+                        class="<%= errorsFields.find(e => e.param === 'email') ? 'invalidInput' : '' %>"
+                         name="email" value="<%= oldInput.email %>" placeholder="Email" readonly>                 
+                    </div>
+                    <div class="form-control">
+                        <input type="password"
+                        class="<%= errorsFields.find(e => e.param === 'password') ? 'invalidInput' : '' %>"
+                        name="password" value="<%= oldInput.password %>" placeholder="Mot De Passe">
+                    </div>
+                    <div class="form-control">
+                        <input type="password" 
+                        class="<%= errorsFields.find(e => e.param === 'confirmPassword') ? 'invalidInput' : ''%>"
+                        name="confirmPassword" value="<%= oldInput.confirmPassword %>" placeholder="Confirmer Le mot de passe">
+                    </div>
+                    <div id="imageUploader">
+                        <input accept = "image/*"
+                        id="imageUpload" class="upload-img" type="file"  name="image" placeholder="image">
+                        <label for="imageUpload" />Choissisez une image </label>
+                    </div>
+                    <div class="form-control">
+                        <input type="submit" class="btn" value="Valider">
+                    </div>
+                </form>
+
+
+            </main>
+
+        </div>
+
+    
+</body>
+</html>

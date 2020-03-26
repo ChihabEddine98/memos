@@ -2,6 +2,9 @@ const Memo=require('../models/Memo')
 const User=require('../models/User')
 const Sqlz=require('sequelize')
 const db=require('../common/database')
+const { validationResult }=require('express-validator/check')
+const bcrypt = require('bcryptjs')
+
 
 
 exports.getIndex =((req,res,next)=> {
@@ -241,3 +244,33 @@ exports.getMemo =((req,res,next)=>
 
 
 })
+
+exports.getEditUser =((req,res,next)=>{
+
+  let msg=req.flash('error')
+  if(msg.length >0)
+  {
+    msg=msg[0]
+  }
+  else{
+    msg=null
+  }
+  const user=req.user
+  res.render('edit_user.ejs',
+  { pageTitle :'Modifier vos informations ',
+    isAuth: true,
+    isAdmin : true,
+    errMsg :msg,
+    user :user,
+    oldInput: {
+      nom:user.first_name,
+      prenom:user.last_name,
+      email : user.email,
+      password: "",
+      confirmPassword :""
+    },
+    errorsFields : [],
+    path:'/edit'
+  })
+})
+

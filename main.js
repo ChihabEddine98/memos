@@ -5,7 +5,8 @@ const multer=require('multer')
 const session=require('express-session')
 const flash=require('connect-flash')
 const Sqlz=require('sequelize')
-
+const bcrypt=require('bcryptjs')
+const Common =require('./src/common/common')
 
 
 const db=require('./src/common/database')
@@ -101,15 +102,22 @@ Memo.belongsToMany(User, { through: User_Memo ,onDelete: 'cascade', });
 db.sync()
 .then(result => {
     console.log('Connection Réussie à La BDD !')
-    app.listen(PORT)
-    console.log(`localhost:${PORT}`)
+    return User.findByPk(1)
 
-
-
-})
-.catch(err => {
+    })
+    .then( user => {
+    if (!user)
+    {
+        return Common.createAdmin()
+    }
+    return null
+    }).then(user=>{
+        app.listen(PORT)
+        console.log(`localhost:${PORT}`)
+    })
+    .catch(err => {
     console.log(err)
-})
+        })
 
 
 
