@@ -17,7 +17,7 @@ exports.createAdmin= function (){
           .hash('admin', 12)
           .then(hashedPass => {
           
-            const imgUrl ='admin.JPG'
+            const imgUrl ='/admin.JPG'
             const admin = new User({
               email: 'admin@esi.dz',
               password: hashedPass,

@@ -3,7 +3,7 @@ const db=require('../common/database')
 const sequelizePaginate = require('sequelize-paginate')
 
 
-const User_Memo=db.define('User_Memo',{
+const User_Memo=db.define('user_memo',{
     isShared :{
         type :Sqlz.BOOLEAN,
         defaultValue : false,

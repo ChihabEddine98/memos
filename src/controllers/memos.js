@@ -376,7 +376,7 @@ exports.getEditUser =((req,res,next)=>{
     res.render('edit_user',
     { pageTitle :'Modifier vos informations ',
       isAuth: true,
-      isAdmin : true,
+      isAdmin : false,
       errMsg :msg,
       user :user,
       oldInput: {

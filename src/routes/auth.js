@@ -26,7 +26,7 @@ router.post('/register',[
                             })
                     }),
                     body('password').isLength({min: 3})
-                    .withMessage(" Le mot de passe doit etre au minimum 6 characteres !"),    
+                    .withMessage(" Le mot de passe doit etre au minimum 3 characteres !"),    
                     body('confirmPassword').custom((value,{req})=>{
                         if( value !== req.body.password)
                         {
