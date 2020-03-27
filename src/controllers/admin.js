@@ -207,6 +207,7 @@ exports.getStats =((req,res,next)=> {
 exports.getMemo =((req,res,next)=> 
 {
     const memoId=req.params.memoId
+    const User_Memo=require('../models/User_Memo')
     Memo.findByPk(memoId)
         .then( memo => 
             {
@@ -222,17 +223,32 @@ exports.getMemo =((req,res,next)=>
 
                     const sql='select users.first_name,last_name,img_url from users where id='+memo.owner+';'
                     User.findByPk(memo.owner).then( userOwner =>{
-                      res.render('memo_detail',
-                      {   pageTitle :'Mémos Detail !',
-                          memo :memo,
-                          isAuth: req.session.isLoggedIn,
-                          user : req.user,
-                          users :users,
-                          isAdmin :req.session.isAdmin,
-                          owner :userOwner,
-                          path:'/admin/memos'
-                      })
+                     
+                      return userOwner
+                
+                    }).then(userOwner =>{
+
+                      const avecQuiSharedSQL='SELECT * from users join user_memos on (user_memos.userId=users.id) where user_memos.memoId='+memo.id+' AND user_memos.isShared=1;'
+                      
+                      db.query(avecQuiSharedSQL)
+                               .then(avecQui =>{
+
+                                res.render('memo_detail',
+                                {   pageTitle :'Mémos Detail !',
+                                    memo :memo,
+                                    isAuth: req.session.isLoggedIn,
+                                    user : req.user,
+                                    users :users,
+                                    isAdmin :req.session.isAdmin,
+                                    owner :userOwner,
+                                    avecQui:avecQui[0],
+                                    path:'/memos'
+                                })
+                               })
+                      
+
                     })
+            
             
 
                   })

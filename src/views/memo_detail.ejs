@@ -63,7 +63,85 @@
           </form>
           </div>
 
-        
+          <hr>
+          
+          <div class="users">
+
+            <% if(memo.owner === user.id) { %>
+            <h2> Vous l'avez Déjà partagé avec :</h2>
+            <% } else { %>
+            <h2> Il a était Déjà partagé avec :</h2>
+            <% } %>
+            <hr>
+    
+            <% if (avecQui.length > 0) { %>
+            <table>
+                <thead>
+                <tr>
+                    <td></td>
+                    <td> Prénoms </td>
+                    <td> Nom </td>
+                    <td> Sexe </td>
+                    <td> Email </td>
+                    <td> Role </td>
+                    <td></td>
+                </tr>
+                </thead>
+                <tbody>
+    
+                <% for(let user of avecQui) { %>
+                    <tr>
+                        <td>
+                            <% if (!user.img_url) { %>
+                                <% if (user.sexe==='m'){ %>
+                                    <img class="userImgList" src="/img/profil_default_male.png" alt=""/>
+                                <% }else { %>
+                                    <img class="userImgList" src="/img/profil_default_female.jpg" alt=""/>
+                            <% }}else { %>
+                                <img class="userImgList" src="<%= user.img_url %>" alt=""/>
+                            <% } %>
+    
+                        </td>
+                        <td> <%= user.first_name %></td>
+                        <td> <%= user.last_name %> </td>
+                        <td>
+                           <% if (user.sexe==='m') { %>
+                               <img src="/img/male.png"  class="sexeImg" alt="">
+                           <% }else { %>
+                               <img src="/img/female.png"  class="sexeImg" alt="">
+                           <% } %>
+    
+                        </td>
+                        <td> <%= user.email %></td> 
+                        <td>
+                            <% if ( user.role=='ADMIN' ) { %>
+                                <img class="userImgList" src="/img/admin_icon.png" alt=""/>
+                                <% }else { %>
+                                    <img class="userImgList" src="/img/simple_icon.png" alt=""/>
+                            <% }%>
+                        </td> 
+                        
+                        <td>
+                            <!-- <form action="/admin/edit_user" method="POST">
+                                <input type="hidden" value="<%= user.id %>" name="userId">
+                                <input type="submit" class="btn" value="Modifier"/> 
+                            </form> -->
+                        </td>
+                    </tr>
+                <% } %>
+    
+    
+    
+    
+    
+                </tbody>
+            </table>
+            <% } else{ %>
+              <h2> Personne Pour l'instant !</h2>
+            <% } %>
+
+
+          </div>
         
         
     </main>

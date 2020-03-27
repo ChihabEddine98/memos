@@ -59,7 +59,7 @@ exports.postRegister =((req,res,next)=>{
     const email=req.body.email
     const password=req.body.password
     const image=req.file
-    const sexe=req.body.gender
+    let sexe='m'
     let imgUrl=null
 
 
@@ -89,7 +89,11 @@ exports.postRegister =((req,res,next)=>{
             {
               imgUrl =image.path.substring(19)
             }
-            
+            if(req.body.gender)
+            {
+              sexe=req.body.gender
+            }
+
             const user = new User({
               email: email,
               password: hashedPass,
