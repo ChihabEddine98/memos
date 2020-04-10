@@ -50,3 +50,34 @@ les images qu'on upload à la base de donnée ( par exemple photo de profile ou 
 |express-validator|`Validation des formulaires en cas d'erreur ! `|
 |multer|`Pour le upload des images au server !`|
 |sequelize-paginate|` Pour l'affichage en pages des listes ( utilisateur / mémos `|
+
+# Some Screenshots ( quelques captures !)
+![welcome](https://user-images.githubusercontent.com/38104305/79007424-6ed64d00-7b5b-11ea-91e7-31a707afb501.JPG)
+------------
+![register](https://user-images.githubusercontent.com/38104305/79007381-5cf4aa00-7b5b-11ea-9955-dc255fdb666f.JPG)
+------------
+![register_error](https://user-images.githubusercontent.com/38104305/79007401-65e57b80-7b5b-11ea-9e5a-f8fca55ab16f.JPG)
+------------
+![login](https://user-images.githubusercontent.com/38104305/79007412-6a119900-7b5b-11ea-8de4-93659b096a2f.JPG)
+------------
+![welcome_admin](https://user-images.githubusercontent.com/38104305/79007446-7ac20f00-7b5b-11ea-8c61-e3ee67e5d1aa.JPG)
+------------
+![users](https://user-images.githubusercontent.com/38104305/79007457-7f86c300-7b5b-11ea-9fe0-4cce746f3e8a.JPG)
+------------
+![edit_profile](https://user-images.githubusercontent.com/38104305/79007463-8281b380-7b5b-11ea-9d43-a23d0f0b5261.JPG)
+------------
+![memos](https://user-images.githubusercontent.com/38104305/79007465-84e40d80-7b5b-11ea-9dae-394b456c4639.JPG)
+------------
+![memo](https://user-images.githubusercontent.com/38104305/79007473-87defe00-7b5b-11ea-956b-4aca708194c1.JPG)
+------------
+![memo_share](https://user-images.githubusercontent.com/38104305/79007478-89a8c180-7b5b-11ea-8e22-6ffca3d41db8.JPG)
+------------
+![edit_profile](https://user-images.githubusercontent.com/38104305/79007492-90373900-7b5b-11ea-9da4-734f43a9f406.JPG)
+------------
+![stats_1](https://user-images.githubusercontent.com/38104305/79007499-93322980-7b5b-11ea-8234-197eb82c10f6.JPG)
+------------
+![stats_2](https://user-images.githubusercontent.com/38104305/79007506-94fbed00-7b5b-11ea-9313-b8080cc38da8.JPG)
+
+
+
+
