@@ -36,7 +36,7 @@
     "express-session": "^1.17.0",
     "express-validator": "^6.4.0",
     "jquery": "^3.5.0",
-    "jsdom": "^16.2.1",
+    "jsdom": "^16.5.0",
     "mobius1-selectr": "^2.4.13",
     "multer": "^1.4.2",
     "mysql2": "^2.1.0",
